@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./docker/frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app:cached
+    stdin_open: true
+    tty: true
+    depends_on:
+      - nginx
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./backend:/app:cached
+    tty: true
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./docker/backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app:cached
+    tty: true
+    environment:
+      - APP_ENV=development
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./docker/db
+      dockerfile: Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ohgetsu
+      MYSQL_USER: ohgetsu
+      MYSQL_PASSWORD: ohgetsu
+      MYSQL_ROOT_PASSWORD: ohgetsu
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - db-volume:/var/lib/mysql:cached
+
+volumes:
+  db-volume:
