@@ -1,4 +1,4 @@
-version: '3'
+version: "3.8"
 
 services:
   frontend:
@@ -50,7 +50,7 @@ services:
       MYSQL_USER: ohgetsu
       MYSQL_PASSWORD: ohgetsu
       MYSQL_ROOT_PASSWORD: ohgetsu
-      TZ: 'Asia/Tokyo'
+      TZ: "Asia/Tokyo"
     volumes:
       - db-volume:/var/lib/mysql:cached
 
