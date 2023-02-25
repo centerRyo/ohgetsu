@@ -1,3 +1,66 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2022
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    // 関数の戻り値はtsの推論に任せる
+    "@typescript-eslint/explicit-function-return-type": "off",
+    // anyを禁止 (必要なケースは行コメントでeslint-disableする)
+    "@typescript-eslint/no-explicit-any": "error",
+    // ts-ignoreを許可する
+    "@typescript-eslint/ban-ts-comment": "off",
+    // type Props = {} などを許可する
+    "@typescript-eslint/ban-types": [
+      "off",
+      {
+        "types": {
+          "{}": false
+        }
+      }
+    ],
+    // 厳密等価演算子を強制
+    "eqeqeq": 2,
+    // e.g. prop={'foo'} -> prop='foo'
+    "react/jsx-curly-brace-presence": "warn",
+    // e.g. opened={true} -> opened
+    "react/jsx-boolean-value": "warn",
+    // e.g. <Foo></Foo> -> <Foo />
+    "react/self-closing-comp": [
+      "warn",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    // eslint-plugin-reactで対応しているので無効化する
+    "react/jsx-uses/react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
 }
