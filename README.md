@@ -31,7 +31,7 @@ php artisan key:generate
 
 ### アクセス
 
-localhost:3000 にアクセスすると画面が見れる
+localhost にアクセスすると画面が見れる
 
 ## frontend
 
