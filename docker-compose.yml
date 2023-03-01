@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   frontend:
@@ -50,9 +50,22 @@ services:
       MYSQL_USER: ohgetsu
       MYSQL_PASSWORD: ohgetsu
       MYSQL_ROOT_PASSWORD: ohgetsu
-      TZ: "Asia/Tokyo"
+      TZ: 'Asia/Tokyo'
     volumes:
       - db-volume:/var/lib/mysql:cached
+
+  test_db:
+    build:
+      context: ./docker/db
+      dockerfile: Dockerfile
+    ports:
+      - 3307:3306
+    volumes:
+      - db-volume:/var/lib/mysql:cached
+    environment:
+      MYSQL_DATABASE: ohgetsu
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Tokyo
 
 volumes:
   db-volume:
