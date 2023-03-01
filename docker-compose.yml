@@ -44,7 +44,7 @@ services:
       context: ./docker/db
       dockerfile: Dockerfile
     ports:
-      - 3306:3306
+      - '3307:3306'
     environment:
       MYSQL_DATABASE: ohgetsu
       MYSQL_USER: ohgetsu
@@ -55,17 +55,15 @@ services:
       - db-volume:/var/lib/mysql:cached
 
   test_db:
-    build:
-      context: ./docker/db
-      dockerfile: Dockerfile
+    image: mysql:8.0
     ports:
-      - 3307:3306
+      - '3306:3306'
     volumes:
-      - db-volume:/var/lib/mysql:cached
+      - ./docker/my.conf:/etc/mysql/conf.d/my.conf
     environment:
-      MYSQL_DATABASE: ohgetsu
+      MYSQL_DATABASE: ohgetsu_test
       MYSQL_ROOT_PASSWORD: root
-      TZ: Asia/Tokyo
+      TZ: 'Asia/Tokyo'
 
 volumes:
   db-volume:
