@@ -20,7 +20,7 @@ services:
       context: ./docker/nginx
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - 4000:80
     volumes:
       - ./backend:/app:cached
     tty: true
