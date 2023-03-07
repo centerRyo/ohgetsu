@@ -10,7 +10,8 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "nuwave/lighthouse": "^5.71"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "3.6.5",
