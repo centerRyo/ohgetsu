@@ -1,0 +1,10 @@
+overwrite: true
+# FIXME: 本当はbackendのスキーマからスキーマを生成したい
+schema: 'src/graphql/generated/schema.graphql'
+documents: 'src/**/*.graphql'
+generates:
+  src/graphql/generated/index.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

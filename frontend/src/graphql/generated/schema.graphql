@@ -1,0 +1,18 @@
+scalar DateTime
+
+type Query {
+  ingredients: [Ingredients!]!
+}
+
+type Ingredients {
+  id: ID!
+  name: String!
+  category: Category
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+enum Category {
+  MAIN
+  SUB
+}

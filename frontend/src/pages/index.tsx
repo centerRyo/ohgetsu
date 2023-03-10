@@ -1,28 +1,18 @@
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { useIngredientsQuery } from '@/graphql/generated';
+import { HStack, Tag } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import React from 'react';
 
 const SamplePage: NextPage = () => {
+  const { data } = useIngredientsQuery();
+  const ingredients = data?.ingredients || [];
   return (
-    <Tabs>
-      <TabList>
-        <Tab>One</Tab>
-        <Tab>Two</Tab>
-        <Tab>Three</Tab>
-      </TabList>
-
-      <TabPanels>
-        <TabPanel>
-          <p>one!</p>
-        </TabPanel>
-        <TabPanel>
-          <p>two!</p>
-        </TabPanel>
-        <TabPanel>
-          <p>three!</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+    <HStack>
+      {ingredients.map((ingredient) => (
+        <Tag key={ingredient.id} colorScheme='blue'>
+          {ingredient.name}
+        </Tag>
+      ))}
+    </HStack>
   );
 };
 

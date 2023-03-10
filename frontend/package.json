@@ -10,18 +10,27 @@
     "types-check": "tsc --noEmit",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\" --max-warnings=0",
     "lint:fix": "eslint src/**/*.{js,ts,tsx} --fix",
-    "test": "jest"
+    "test": "jest",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.10",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "framer-motion": "^10.0.1",
+    "graphql": "^16.6.0",
     "next": "12.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/client-preset": "2.1.1",
+    "@graphql-codegen/introspection": "3.0.1",
+    "@graphql-codegen/typescript": "^3.0.2",
+    "@graphql-codegen/typescript-operations": "^3.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@testing-library/dom": "^9.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
