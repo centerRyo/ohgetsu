@@ -1,4 +1,4 @@
-import '@/styles/global.scss';
+import theme from '@/utils/theme';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
@@ -11,7 +11,7 @@ const client = new ApolloClient({
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
     </ApolloProvider>
