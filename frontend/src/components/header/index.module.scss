@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  background: black;
+  height: 48px;
+  padding: 5px 15px;
+  width: 100%;
+}
+
+.logo {
+  user-select: none;
+  margin: 0 auto 0 0;
+  line-height: 1;
+}
