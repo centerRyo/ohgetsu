@@ -1,8 +1,8 @@
 type Query {
-  ingredients: [Ingredients!]!
+  ingredients: [Ingredient!]! @all
 }
 
-type IngredientType {
+type Ingredient {
   id: ID!
   name: String!
   category: Category
