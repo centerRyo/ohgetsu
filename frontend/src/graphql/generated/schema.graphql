@@ -1,15 +1,11 @@
-scalar DateTime
-
 type Query {
-  ingredients: [Ingredients!]!
+  ingredients: [IngredientType!]!
 }
 
-type Ingredients {
+type IngredientType {
   id: ID!
   name: String!
   category: Category
-  created_at: DateTime!
-  updated_at: DateTime!
 }
 
 enum Category {
