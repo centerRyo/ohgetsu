@@ -1,16 +1,11 @@
-scalar DateTime
-  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-
 type Query {
   ingredients: [Ingredients!]!
 }
 
-type Ingredients {
+type IngredientType {
   id: ID!
   name: String!
   category: Category
-  created_at: DateTime!
-  updated_at: DateTime!
 }
 
 enum Category {

@@ -13,7 +13,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  DateTime: any;
 };
 
 export enum Category {
@@ -21,24 +20,22 @@ export enum Category {
   Sub = 'SUB'
 }
 
-export type Ingredients = {
-  __typename?: 'Ingredients';
+export type IngredientType = {
+  __typename?: 'IngredientType';
   category?: Maybe<Category>;
-  created_at: Scalars['DateTime'];
   id: Scalars['ID'];
   name: Scalars['String'];
-  updated_at: Scalars['DateTime'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  ingredients: Array<Ingredients>;
+  ingredients: Array<IngredientType>;
 };
 
 export type IngredientsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type IngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'Ingredients', id: string, name: string, category?: Category | null }> };
+export type IngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string, category?: Category | null }> };
 
 
 export const IngredientsDocument = gql`
