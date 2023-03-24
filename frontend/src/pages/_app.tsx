@@ -8,7 +8,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
@@ -18,4 +18,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default MyApp;
+export default App;
