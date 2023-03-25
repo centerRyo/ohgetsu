@@ -1,3 +1,4 @@
+import Layout from '@/components/layout';
 import theme from '@/utils/theme';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -12,7 +13,9 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ChakraProvider>
     </ApolloProvider>
   );
