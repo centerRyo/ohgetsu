@@ -1,13 +1,7 @@
+import Checkbox from '@/components/checkbox';
 import Input from '@/components/input';
 import Select from '@/components/select';
-import {
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Flex,
-  FormControl,
-  Stack,
-} from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo } from 'react';
 
@@ -44,14 +38,17 @@ const RegisterShopPage: NextPage = memo(() => {
       <Flex mb={4}>
         <Input name='menu_name' label='メニュー' type='text' isRequired />
       </Flex>
-      <FormControl isRequired>
-        <CheckboxGroup>
-          <Stack direction={['column', 'row']} spacing='12px'>
-            <Checkbox value='egg'>卵</Checkbox>
-            <Checkbox value='milk'>乳</Checkbox>
-          </Stack>
-        </CheckboxGroup>
-      </FormControl>
+      <Flex mb={4}>
+        <Checkbox
+          name='ingredients'
+          label='アレルギー物質'
+          options={[
+            { name: '卵', value: 'egg' },
+            { name: '乳', value: 'milk' },
+          ]}
+          isRequired
+        />
+      </Flex>
       <Flex mb={4}>
         <Input name='menu_pic' label='写真' type='file' />
       </Flex>
