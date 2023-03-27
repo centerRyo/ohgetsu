@@ -1,12 +1,11 @@
 import Input from '@/components/input';
+import Select from '@/components/select';
 import {
   Button,
   Checkbox,
   CheckboxGroup,
   Flex,
   FormControl,
-  FormLabel,
-  Select,
   Stack,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
@@ -30,13 +29,18 @@ const RegisterShopPage: NextPage = memo(() => {
       <Flex mb={4}>
         <Input name='pic' label='お店の写真' type='file' />
       </Flex>
-      <FormControl isRequired>
-        <FormLabel fontWeight='bold'>ジャンル</FormLabel>
-        <Select placeholder='ジャンルを選択してください'>
-          <option>a</option>
-          <option>b</option>
-        </Select>
-      </FormControl>
+      <Flex mb={4}>
+        <Select
+          name='genre_id'
+          label='ジャンル'
+          options={[
+            { id: 1, value: 'a' },
+            { id: 2, value: 'b' },
+          ]}
+          placeholder='ジャンルを選択してください'
+          isRequired
+        />
+      </Flex>
       <Flex mb={4}>
         <Input name='menu_name' label='メニュー' type='text' isRequired />
       </Flex>
