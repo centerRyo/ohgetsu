@@ -2,7 +2,6 @@ import {
   FormControl,
   FormHelperText,
   FormLabel,
-  FormLabelProps,
   Input as ChakraInput,
 } from '@chakra-ui/react';
 import { FC, memo } from 'react';
@@ -10,11 +9,12 @@ import { FC, memo } from 'react';
 type Props = Partial<{
   isRequired: boolean;
   helper: string;
+  fontWeight: string;
 }> & {
   label: string;
   type: string;
   name: string;
-} & FormLabelProps;
+};
 
 const Input: FC<Props> = memo(
   ({ name, label, type, isRequired, helper, fontWeight = 'bold' }) => {
