@@ -15,7 +15,7 @@ type Props = Partial<{
   isDisabled: boolean;
   testPrefix: string;
 }> & {
-  options: Array<{ name: string; value: string }>;
+  options: Array<{ label: string; value: string }>;
   name: string;
   label: string;
 };
@@ -31,30 +31,29 @@ const Checkbox: FC<Props> = memo(
     isDisabled,
     options,
   }) => {
-    console.log(isLoading);
     return (
-      <SkeletonText
-        data-testid={testPrefix ? `${testPrefix}-${name}` : name}
-        isLoaded={!isLoading}
-        skeletonHeight={3}
-      >
-        <FormControl isRequired={isRequired}>
-          <FormLabel fontWeight={fontWeight}>{label}</FormLabel>
+      <FormControl isRequired={isRequired}>
+        <FormLabel fontWeight={fontWeight}>{label}</FormLabel>
+        <SkeletonText
+          data-testid={testPrefix ? `${testPrefix}-${name}` : name}
+          isLoaded={!isLoading}
+          skeletonHeight={3}
+        >
           <CheckboxGroup>
-            <Flex gap={4}>
+            <Flex gap={4} wrap='wrap'>
               {options.map((option) => (
                 <ChakraCheckbox
                   key={option.value}
                   isDisabled={isDisabled}
                   name={option.value}
                 >
-                  {option.name}
+                  {option.label}
                 </ChakraCheckbox>
               ))}
             </Flex>
           </CheckboxGroup>
-        </FormControl>
-      </SkeletonText>
+        </SkeletonText>
+      </FormControl>
     );
   }
 );

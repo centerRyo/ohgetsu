@@ -2,12 +2,21 @@ import Checkbox from '@/components/checkbox';
 import Input from '@/components/input';
 import Select from '@/components/select';
 import { useIngredientsQuery } from '@/graphql/generated';
+import { useCustomOptions } from '@/hooks/useOptions';
 import { Button, Flex } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo } from 'react';
 
 const RegisterShopPage: NextPage = memo(() => {
   const { data, error, loading } = useIngredientsQuery();
+
+  const ingredients = data?.ingredients || [];
+
+  const options = useCustomOptions({
+    items: ingredients,
+    getLabel: (item) => item.name,
+    ignoreDefault: true,
+  });
 
   return (
     <div>
@@ -45,10 +54,7 @@ const RegisterShopPage: NextPage = memo(() => {
         <Checkbox
           name='ingredients'
           label='アレルギー物質'
-          options={[
-            { name: '卵', value: 'egg' },
-            { name: '乳', value: 'milk' },
-          ]}
+          options={options}
           isRequired
           isLoading={loading}
         />
