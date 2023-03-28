@@ -1,0 +1,21 @@
+@use '@/styles/index.module' as var;
+
+.container {
+  .header {
+    background: black;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: var.$fullWidth;
+  }
+
+  .content {
+    width: var.$fullWidth;
+    height: 100%;
+    min-height: 100vh;
+    padding: 0 1.5rem;
+    max-width: var.$maxWidth;
+    margin: 0 auto;
+  }
+}

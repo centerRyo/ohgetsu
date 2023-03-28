@@ -31,5 +31,5 @@
   "files.trimTrailingWhitespace": true,
   "npm.packageManager": "yarn",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["Chakra", "codegen"]
+  "cSpell.words": ["Chakra", "codegen", "testid"]
 }
