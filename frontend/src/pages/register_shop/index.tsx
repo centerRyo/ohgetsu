@@ -6,6 +6,7 @@ import { useCustomOptions } from '@/hooks/useOptions';
 import { Button, Flex } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo } from 'react';
+import styles from './index.module.scss';
 
 const RegisterShopPage: NextPage = memo(() => {
   const { data, error, loading } = useIngredientsQuery();
@@ -19,7 +20,7 @@ const RegisterShopPage: NextPage = memo(() => {
   });
 
   return (
-    <div>
+    <div className={styles.container}>
       <Flex mb={4}>
         <Input name='name' label='店名' type='text' isRequired />
       </Flex>
@@ -59,13 +60,15 @@ const RegisterShopPage: NextPage = memo(() => {
           isLoading={loading}
         />
       </Flex>
-      <Flex mb={4}>
+      <Flex mb={8}>
         <Input name='menu_pic' label='写真' type='file' />
       </Flex>
 
-      <Button type='submit' variant='outline'>
-        登録する
-      </Button>
+      <Flex justifyContent='flex-end'>
+        <Button type='submit' colorScheme='green'>
+          登録する
+        </Button>
+      </Flex>
     </div>
   );
 });
