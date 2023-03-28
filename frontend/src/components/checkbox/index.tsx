@@ -4,7 +4,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Skeleton,
+  SkeletonText,
 } from '@chakra-ui/react';
 import { FC, memo } from 'react';
 
@@ -27,31 +27,34 @@ const Checkbox: FC<Props> = memo(
     isRequired,
     testPrefix,
     fontWeight = 'bold',
-    isLoading = false,
+    isLoading,
     isDisabled,
     options,
   }) => {
-    return isLoading ? (
-      <div data-testid={testPrefix ? `${testPrefix}-${name}` : name}>
-        <Skeleton height='10rem' />
-      </div>
-    ) : (
-      <FormControl isRequired={isRequired}>
-        <FormLabel fontWeight={fontWeight}>{label}</FormLabel>
-        <CheckboxGroup>
-          <Flex gap={4}>
-            {options.map((option) => (
-              <ChakraCheckbox
-                key={option.value}
-                isDisabled={isDisabled}
-                name={option.value}
-              >
-                {option.name}
-              </ChakraCheckbox>
-            ))}
-          </Flex>
-        </CheckboxGroup>
-      </FormControl>
+    console.log(isLoading);
+    return (
+      <SkeletonText
+        data-testid={testPrefix ? `${testPrefix}-${name}` : name}
+        isLoaded={!isLoading}
+        skeletonHeight={3}
+      >
+        <FormControl isRequired={isRequired}>
+          <FormLabel fontWeight={fontWeight}>{label}</FormLabel>
+          <CheckboxGroup>
+            <Flex gap={4}>
+              {options.map((option) => (
+                <ChakraCheckbox
+                  key={option.value}
+                  isDisabled={isDisabled}
+                  name={option.value}
+                >
+                  {option.name}
+                </ChakraCheckbox>
+              ))}
+            </Flex>
+          </CheckboxGroup>
+        </FormControl>
+      </SkeletonText>
     );
   }
 );

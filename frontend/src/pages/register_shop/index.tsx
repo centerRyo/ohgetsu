@@ -1,11 +1,14 @@
 import Checkbox from '@/components/checkbox';
 import Input from '@/components/input';
 import Select from '@/components/select';
+import { useIngredientsQuery } from '@/graphql/generated';
 import { Button, Flex } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo } from 'react';
 
 const RegisterShopPage: NextPage = memo(() => {
+  const { data, error, loading } = useIngredientsQuery();
+
   return (
     <div>
       <Flex mb={4}>
@@ -47,6 +50,7 @@ const RegisterShopPage: NextPage = memo(() => {
             { name: '乳', value: 'milk' },
           ]}
           isRequired
+          isLoading={loading}
         />
       </Flex>
       <Flex mb={4}>
