@@ -11,6 +11,7 @@ import {
   FormLabel,
   Input,
   Select,
+  SkeletonText,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo } from 'react';
@@ -131,21 +132,23 @@ const RegisterShopPage: NextPage = memo(() => {
             <Flex mb={2}>
               <FormLabel className={styles.label}>アレルギー情報</FormLabel>
             </Flex>
-            <Controller
-              name='ingredients'
-              control={control}
-              render={({ field: { ref, ...rest } }) => (
-                <CheckboxGroup {...rest}>
-                  <Flex gap={4} wrap='wrap'>
-                    {options.map((option) => (
-                      <Checkbox value={option.value} key={option.key}>
-                        {option.label}
-                      </Checkbox>
-                    ))}
-                  </Flex>
-                </CheckboxGroup>
-              )}
-            />
+            <SkeletonText isLoaded={!loading} skeletonHeight={4} spacing='5'>
+              <Controller
+                name='ingredients'
+                control={control}
+                render={({ field: { ref, ...rest } }) => (
+                  <CheckboxGroup {...rest}>
+                    <Flex gap={4} wrap='wrap'>
+                      {options.map((option) => (
+                        <Checkbox value={option.value} key={option.key}>
+                          {option.label}
+                        </Checkbox>
+                      ))}
+                    </Flex>
+                  </CheckboxGroup>
+                )}
+              />
+            </SkeletonText>
           </FormControl>
         </Flex>
         <Flex mb={8}>
