@@ -16,6 +16,7 @@ import {
 import { NextPage } from 'next';
 import { memo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useHandler } from './hooks';
 import styles from './index.module.scss';
 
 const RegisterShopPage: NextPage = memo(() => {
@@ -36,7 +37,7 @@ const RegisterShopPage: NextPage = memo(() => {
     control,
   } = useForm({ mode: 'all' });
 
-  const onSubmit = (values: any) => console.log(values);
+  const { handleSubmit: onSubmit } = useHandler();
 
   return (
     <div className={styles.container}>
