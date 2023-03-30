@@ -4,24 +4,23 @@ import {
   FormLabel,
   Input as ChakraInput,
 } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
-type Props = Partial<{
-  isRequired: boolean;
-  helper: string;
-  fontWeight: string;
-}> & {
-  label: string;
-  type: string;
-  name: string;
-};
+type Props = ComponentPropsWithoutRef<'input'> &
+  Partial<{
+    isRequired: boolean;
+    helper: string;
+    fontWeight: string;
+  }> & {
+    label: string;
+  };
 
-const Input: FC<Props> = memo(
-  ({ name, label, type, isRequired, helper, fontWeight = 'bold' }) => {
+const Input = forwardRef<HTMLInputElement, Props>(
+  ({ isRequired, helper, fontWeight, label, type, name }, ref) => {
     return (
       <FormControl isRequired={isRequired}>
         <FormLabel fontWeight={fontWeight}>{label}</FormLabel>
-        <ChakraInput name={name} type={type} />
+        <ChakraInput id={name} name={name} type={type} />
         {helper && <FormHelperText>{helper}</FormHelperText>}
       </FormControl>
     );
