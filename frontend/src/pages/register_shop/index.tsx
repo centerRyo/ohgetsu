@@ -40,11 +40,14 @@ const RegisterShopPage: NextPage = memo(() => {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Flex mb={4}>
+        <Flex mb={6}>
           <FormControl isInvalid={!!errors.name?.message}>
-            <FormLabel htmlFor='name' fontWeight='bold'>
-              店名
-            </FormLabel>
+            <Flex alignItems='center' gap={4} mb={2}>
+              <FormLabel htmlFor='name' className={styles.label}>
+                店名
+              </FormLabel>
+              <span className={styles.required}>必須</span>
+            </Flex>
             <Input
               id='name'
               {...register('name', {
@@ -57,11 +60,14 @@ const RegisterShopPage: NextPage = memo(() => {
             </FormErrorMessage>
           </FormControl>
         </Flex>
-        <Flex mb={4}>
+        <Flex mb={6}>
           <FormControl isInvalid={!!errors.address?.message}>
-            <FormLabel htmlFor='address' fontWeight='bold'>
-              住所
-            </FormLabel>
+            <Flex alignItems='center' gap={4} mb={2}>
+              <FormLabel htmlFor='address' className={styles.label}>
+                住所
+              </FormLabel>
+              <span className={styles.required}>必須</span>
+            </Flex>
             <Input
               id='address'
               type='text'
@@ -73,15 +79,24 @@ const RegisterShopPage: NextPage = memo(() => {
             </FormErrorMessage>
           </FormControl>
         </Flex>
-        <Flex mb={4}>
+        <Flex mb={6}>
           <FormControl>
-            <FormLabel fontWeight='bold'>お店の写真</FormLabel>
+            <Flex mb={2}>
+              <FormLabel htmlFor='file' className={styles.label}>
+                お店の写真
+              </FormLabel>
+            </Flex>
             <Input type='file' {...register('pic')} />
           </FormControl>
         </Flex>
-        <Flex mb={4}>
+        <Flex mb={6}>
           <FormControl isInvalid={!!errors.genre_id?.message}>
-            <FormLabel fontWeight='bold'>ジャンル</FormLabel>
+            <Flex alignItems='center' gap={4} mb={2}>
+              <FormLabel htmlFor='genre_id' className={styles.label}>
+                ジャンル
+              </FormLabel>
+              <span className={styles.required}>必須</span>
+            </Flex>
             <Select
               placeholder='ジャンルを選択してください'
               {...register('genre_id', { required: 'ジャンルは必須です' })}
@@ -94,9 +109,14 @@ const RegisterShopPage: NextPage = memo(() => {
             </FormErrorMessage>
           </FormControl>
         </Flex>
-        <Flex mb={4}>
+        <Flex mb={6}>
           <FormControl isInvalid={!!errors.menu_name?.message}>
-            <FormLabel fontWeight='bold'>メニュー</FormLabel>
+            <Flex alignItems='center' gap={4} mb={2}>
+              <FormLabel className={styles.label} htmlFor='menu_name'>
+                メニュー
+              </FormLabel>
+              <span className={styles.required}>必須</span>
+            </Flex>
             <Input
               type='text'
               {...register('menu_name', { required: 'メニューは必須です' })}
@@ -106,9 +126,11 @@ const RegisterShopPage: NextPage = memo(() => {
             </FormErrorMessage>
           </FormControl>
         </Flex>
-        <Flex mb={4}>
+        <Flex mb={6}>
           <FormControl>
-            <FormLabel fontWeight='bold'>アレルギー情報</FormLabel>
+            <Flex mb={2}>
+              <FormLabel className={styles.label}>アレルギー情報</FormLabel>
+            </Flex>
             <Controller
               name='ingredients'
               control={control}
@@ -128,7 +150,9 @@ const RegisterShopPage: NextPage = memo(() => {
         </Flex>
         <Flex mb={8}>
           <FormControl>
-            <FormLabel fontWeight='bold'>写真</FormLabel>
+            <Flex mb={2}>
+              <FormLabel className={styles.label}>写真</FormLabel>
+            </Flex>
             <Input type='file' {...register('menu_pic')} />
           </FormControl>
         </Flex>
