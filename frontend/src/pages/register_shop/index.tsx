@@ -17,6 +17,7 @@ import { NextPage } from 'next';
 import { memo } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { useHandler } from './hooks';
+import { FormValues } from './index.d';
 import styles from './index.module.scss';
 
 const RegisterShopPage: NextPage = memo(() => {
@@ -35,7 +36,7 @@ const RegisterShopPage: NextPage = memo(() => {
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
     control,
-  } = useForm({
+  } = useForm<FormValues>({
     mode: 'all',
     defaultValues: {
       name: '',
