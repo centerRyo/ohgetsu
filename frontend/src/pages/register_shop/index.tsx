@@ -153,7 +153,11 @@ const RegisterShopPage: NextPage = memo(() => {
               </FormControl>
             </Flex>
             <Flex mb={6}>
-              <FormControl>
+              <FormControl
+                isInvalid={
+                  errors.menus && !!errors.menus[index]?.ingredients?.message
+                }
+              >
                 <Flex mb={2}>
                   <FormLabel className={styles.label}>アレルギー情報</FormLabel>
                 </Flex>
@@ -176,8 +180,19 @@ const RegisterShopPage: NextPage = memo(() => {
                         </Flex>
                       </CheckboxGroup>
                     )}
+                    rules={{
+                      validate: {
+                        atLeastOneRequired: (value) =>
+                          (value && value.length >= 1) ||
+                          '1つ以上選択してください',
+                      },
+                    }}
                   />
                 </SkeletonText>
+                <FormErrorMessage>
+                  {errors.menus &&
+                    errors.menus[index]?.ingredients?.message?.toString()}
+                </FormErrorMessage>
               </FormControl>
             </Flex>
             <Flex mb={8}>
