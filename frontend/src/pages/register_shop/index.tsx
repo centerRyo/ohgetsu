@@ -15,12 +15,12 @@ import {
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { useHandler } from './hooks';
 import styles from './index.module.scss';
 
 const RegisterShopPage: NextPage = memo(() => {
-  const { data, error, loading } = useIngredientsQuery();
+  const { data, loading } = useIngredientsQuery();
 
   const ingredients = data?.ingredients || [];
 
@@ -35,9 +35,25 @@ const RegisterShopPage: NextPage = memo(() => {
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
     control,
-  } = useForm({ mode: 'all' });
+  } = useForm({
+    mode: 'all',
+    defaultValues: {
+      name: '',
+      address: '',
+      pic: '',
+      genre_id: '',
+      menus: [{ name: '', ingredients: [], pic: '' }],
+    },
+  });
+
+  const { fields, append } = useFieldArray({
+    control,
+    name: 'menus',
+  });
 
   const { handleSubmit: onSubmit } = useHandler();
+
+  const handleAddMenu = () => append([{ name: '', ingredients: [], pic: '' }]);
 
   return (
     <div className={styles.container}>
@@ -111,55 +127,69 @@ const RegisterShopPage: NextPage = memo(() => {
             </FormErrorMessage>
           </FormControl>
         </Flex>
-        <Flex mb={6}>
-          <FormControl isInvalid={!!errors.menu_name?.message}>
-            <Flex alignItems='center' gap={4} mb={2}>
-              <FormLabel className={styles.label} htmlFor='menu_name'>
-                メニュー
-              </FormLabel>
-              <span className={styles.required}>必須</span>
+        {fields.map((field, index) => (
+          <div key={field.id}>
+            <Flex mb={6}>
+              <FormControl
+                isInvalid={errors.menus && !!errors.menus[index]?.name?.message}
+              >
+                <Flex alignItems='center' gap={4} mb={2}>
+                  <FormLabel className={styles.label} htmlFor='menu_name'>
+                    メニュー
+                  </FormLabel>
+                  <span className={styles.required}>必須</span>
+                </Flex>
+                <Input
+                  type='text'
+                  {...register(`menus.${index}.name`, {
+                    required: 'メニューは必須です',
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.menus &&
+                    errors.menus[index]?.name?.message?.toString()}
+                </FormErrorMessage>
+              </FormControl>
             </Flex>
-            <Input
-              type='text'
-              {...register('menu_name', { required: 'メニューは必須です' })}
-            />
-            <FormErrorMessage>
-              {errors.menu_name?.message?.toString()}
-            </FormErrorMessage>
-          </FormControl>
-        </Flex>
-        <Flex mb={6}>
-          <FormControl>
-            <Flex mb={2}>
-              <FormLabel className={styles.label}>アレルギー情報</FormLabel>
+            <Flex mb={6}>
+              <FormControl>
+                <Flex mb={2}>
+                  <FormLabel className={styles.label}>アレルギー情報</FormLabel>
+                </Flex>
+                <SkeletonText
+                  isLoaded={!loading}
+                  skeletonHeight={4}
+                  spacing='5'
+                >
+                  <Controller
+                    name={`menus.${index}.ingredients`}
+                    control={control}
+                    render={({ field: { ref, ...rest } }) => (
+                      <CheckboxGroup {...rest}>
+                        <Flex gap={4} wrap='wrap'>
+                          {options.map((option) => (
+                            <Checkbox value={option.value} key={option.key}>
+                              {option.label}
+                            </Checkbox>
+                          ))}
+                        </Flex>
+                      </CheckboxGroup>
+                    )}
+                  />
+                </SkeletonText>
+              </FormControl>
             </Flex>
-            <SkeletonText isLoaded={!loading} skeletonHeight={4} spacing='5'>
-              <Controller
-                name='ingredients'
-                control={control}
-                render={({ field: { ref, ...rest } }) => (
-                  <CheckboxGroup {...rest}>
-                    <Flex gap={4} wrap='wrap'>
-                      {options.map((option) => (
-                        <Checkbox value={option.value} key={option.key}>
-                          {option.label}
-                        </Checkbox>
-                      ))}
-                    </Flex>
-                  </CheckboxGroup>
-                )}
-              />
-            </SkeletonText>
-          </FormControl>
-        </Flex>
-        <Flex mb={8}>
-          <FormControl>
-            <Flex mb={2}>
-              <FormLabel className={styles.label}>写真</FormLabel>
+            <Flex mb={8}>
+              <FormControl>
+                <Flex mb={2}>
+                  <FormLabel className={styles.label}>写真</FormLabel>
+                </Flex>
+                <Input type='file' {...register(`menus.${index}.pic`)} />
+              </FormControl>
             </Flex>
-            <Input type='file' {...register('menu_pic')} />
-          </FormControl>
-        </Flex>
+          </div>
+        ))}
+        <Button onClick={handleAddMenu}>メニューを追加</Button>
 
         <Flex justifyContent='flex-end'>
           <Button
