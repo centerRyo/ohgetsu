@@ -39,12 +39,52 @@ export type Query = {
   ingredients: Array<IngredientType>;
 };
 
+export type RegisterShopGenresQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RegisterShopGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'GenreType', id: string, name: string }> };
+
 export type IngredientsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type IngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string, category?: Category | null }> };
 
 
+export const RegisterShopGenresDocument = gql`
+    query RegisterShopGenres {
+  genres {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useRegisterShopGenresQuery__
+ *
+ * To run a query within a React component, call `useRegisterShopGenresQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRegisterShopGenresQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRegisterShopGenresQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRegisterShopGenresQuery(baseOptions?: Apollo.QueryHookOptions<RegisterShopGenresQuery, RegisterShopGenresQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RegisterShopGenresQuery, RegisterShopGenresQueryVariables>(RegisterShopGenresDocument, options);
+      }
+export function useRegisterShopGenresLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RegisterShopGenresQuery, RegisterShopGenresQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RegisterShopGenresQuery, RegisterShopGenresQueryVariables>(RegisterShopGenresDocument, options);
+        }
+export type RegisterShopGenresQueryHookResult = ReturnType<typeof useRegisterShopGenresQuery>;
+export type RegisterShopGenresLazyQueryHookResult = ReturnType<typeof useRegisterShopGenresLazyQuery>;
+export type RegisterShopGenresQueryResult = Apollo.QueryResult<RegisterShopGenresQuery, RegisterShopGenresQueryVariables>;
 export const IngredientsDocument = gql`
     query Ingredients {
   ingredients {
