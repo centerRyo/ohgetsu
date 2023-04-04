@@ -10,11 +10,11 @@ import {
   FormHelperText,
   FormLabel,
   Input,
-  Select,
   SkeletonText,
 } from '@chakra-ui/react';
 import { memo, useState } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import Genres from './Genres';
 import { useHandler } from './hooks';
 import { FormValues, PreviewType } from './index.d';
 import styles from './index.module.scss';
@@ -119,24 +119,7 @@ const RegisterShop = memo(() => {
           </FormControl>
         </Flex>
         <Flex mb={6}>
-          <FormControl isInvalid={!!errors.genre_id?.message}>
-            <Flex alignItems='center' gap={4} mb={2}>
-              <FormLabel htmlFor='genre_id' className={styles.label}>
-                ジャンル
-              </FormLabel>
-              <span className={styles.required}>必須</span>
-            </Flex>
-            <Select
-              placeholder='ジャンルを選択してください'
-              {...register('genre_id', { required: 'ジャンルは必須です' })}
-            >
-              <option value='a'>1</option>
-              <option value='b'>2</option>
-            </Select>
-            <FormErrorMessage>
-              {errors.genre_id?.message?.toString()}
-            </FormErrorMessage>
-          </FormControl>
+          <Genres errors={errors} register={register} />
         </Flex>
         {fields.map((field, index) => (
           <div key={field.id}>

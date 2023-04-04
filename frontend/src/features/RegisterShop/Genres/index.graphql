@@ -1,0 +1,6 @@
+query RegisterShopGenres {
+  genres {
+    id
+    name
+  }
+}
