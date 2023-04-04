@@ -1,4 +1,4 @@
-import RegisterShop from '@/features/registerShop';
+import RegisterShop from '@/features/RegisterShop';
 import { NextPage } from 'next';
 
 const RegisterShopPage: NextPage = () => <RegisterShop />;
