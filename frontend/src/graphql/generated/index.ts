@@ -20,6 +20,12 @@ export enum Category {
   Sub = 'SUB'
 }
 
+export type GenreType = {
+  __typename?: 'GenreType';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
 export type IngredientType = {
   __typename?: 'IngredientType';
   category?: Maybe<Category>;
@@ -29,6 +35,7 @@ export type IngredientType = {
 
 export type Query = {
   __typename?: 'Query';
+  genres: Array<GenreType>;
   ingredients: Array<IngredientType>;
 };
 
