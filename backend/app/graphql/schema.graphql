@@ -1,11 +1,17 @@
 type Query {
   ingredients: [Ingredient!]! @all
+  genres: [Genre!]! @all
 }
 
 type Ingredient {
   id: ID!
   name: String!
   category: Category
+}
+
+type Genre {
+  id: ID!
+  name: String!
 }
 
 enum Category {
