@@ -44,10 +44,10 @@ export type RegisterShopGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type RegisterShopGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'GenreType', id: string, name: string }> };
 
-export type IngredientsQueryVariables = Exact<{ [key: string]: never; }>;
+export type RegisterShopIngredientsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type IngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string, category?: Category | null }> };
+export type RegisterShopIngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string }> };
 
 
 export const RegisterShopGenresDocument = gql`
@@ -85,39 +85,38 @@ export function useRegisterShopGenresLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type RegisterShopGenresQueryHookResult = ReturnType<typeof useRegisterShopGenresQuery>;
 export type RegisterShopGenresLazyQueryHookResult = ReturnType<typeof useRegisterShopGenresLazyQuery>;
 export type RegisterShopGenresQueryResult = Apollo.QueryResult<RegisterShopGenresQuery, RegisterShopGenresQueryVariables>;
-export const IngredientsDocument = gql`
-    query Ingredients {
+export const RegisterShopIngredientsDocument = gql`
+    query RegisterShopIngredients {
   ingredients {
     id
     name
-    category
   }
 }
     `;
 
 /**
- * __useIngredientsQuery__
+ * __useRegisterShopIngredientsQuery__
  *
- * To run a query within a React component, call `useIngredientsQuery` and pass it any options that fit your needs.
- * When your component renders, `useIngredientsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useRegisterShopIngredientsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRegisterShopIngredientsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useIngredientsQuery({
+ * const { data, loading, error } = useRegisterShopIngredientsQuery({
  *   variables: {
  *   },
  * });
  */
-export function useIngredientsQuery(baseOptions?: Apollo.QueryHookOptions<IngredientsQuery, IngredientsQueryVariables>) {
+export function useRegisterShopIngredientsQuery(baseOptions?: Apollo.QueryHookOptions<RegisterShopIngredientsQuery, RegisterShopIngredientsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<IngredientsQuery, IngredientsQueryVariables>(IngredientsDocument, options);
+        return Apollo.useQuery<RegisterShopIngredientsQuery, RegisterShopIngredientsQueryVariables>(RegisterShopIngredientsDocument, options);
       }
-export function useIngredientsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<IngredientsQuery, IngredientsQueryVariables>) {
+export function useRegisterShopIngredientsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RegisterShopIngredientsQuery, RegisterShopIngredientsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<IngredientsQuery, IngredientsQueryVariables>(IngredientsDocument, options);
+          return Apollo.useLazyQuery<RegisterShopIngredientsQuery, RegisterShopIngredientsQueryVariables>(RegisterShopIngredientsDocument, options);
         }
-export type IngredientsQueryHookResult = ReturnType<typeof useIngredientsQuery>;
-export type IngredientsLazyQueryHookResult = ReturnType<typeof useIngredientsLazyQuery>;
-export type IngredientsQueryResult = Apollo.QueryResult<IngredientsQuery, IngredientsQueryVariables>;
+export type RegisterShopIngredientsQueryHookResult = ReturnType<typeof useRegisterShopIngredientsQuery>;
+export type RegisterShopIngredientsLazyQueryHookResult = ReturnType<typeof useRegisterShopIngredientsLazyQuery>;
+export type RegisterShopIngredientsQueryResult = Apollo.QueryResult<RegisterShopIngredientsQuery, RegisterShopIngredientsQueryVariables>;
