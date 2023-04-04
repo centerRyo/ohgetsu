@@ -13,14 +13,13 @@ import {
   Select,
   SkeletonText,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
-import React, { memo, useState } from 'react';
+import { memo, useState } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { useHandler } from './hooks';
-import { FormValues } from './index.d';
+import { FormValues, PreviewType } from './index.d';
 import styles from './index.module.scss';
 
-const RegisterShop: NextPage = memo(() => {
+const RegisterShop = memo(() => {
   const { data, loading } = useIngredientsQuery();
 
   const ingredients = data?.ingredients || [];
@@ -52,25 +51,14 @@ const RegisterShop: NextPage = memo(() => {
     name: 'menus',
   });
 
-  const { handleSubmit: onSubmit } = useHandler();
+  const [preview, setPreview] = useState<PreviewType>({});
+
+  const { handleSubmit: onSubmit, handleFileChange } = useHandler({
+    preview,
+    setPreview,
+  });
 
   const handleAddMenu = () => append([{ name: '', ingredients: [], pic: '' }]);
-
-  // TODO: メニュー写真の型を動的につける
-  const [preview, setPreview] = useState<{
-    pic?: string;
-    'menus.0.pic'?: string;
-  }>({});
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-
-    if (!files) return;
-
-    const name = e.target.name;
-
-    setPreview({ ...preview, [name]: URL.createObjectURL(files[0]) });
-  };
 
   return (
     <div className={styles.container}>
