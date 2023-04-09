@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Menu extends Model
 {
-    protected $fillable = ['name', 'shop_id', 'ingredient_id','pic'];
+    protected $fillable = ['name', 'shop_id','pic'];
 
     public function shop(): BelongsTo {
         return $this->belongsTo(Shop::class);
