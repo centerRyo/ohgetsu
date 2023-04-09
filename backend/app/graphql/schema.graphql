@@ -3,6 +3,52 @@ type Query {
   genres: [Genre!]! @all
 }
 
+type Mutation {
+  createShop(input: CreateShopInput! @spread): Shop! @create
+}
+
+input CreateShopInput {
+  name: String!
+  address: String
+  pic: String
+  genre_id: String!
+  menus: CreateMenusInput
+}
+
+input CreateMenusInput {
+  create: [CreateMenuInput!]!
+}
+
+input CreateMenuInput {
+  name: String!
+  pic: String
+  ingredients: CreateIngredientsInput
+}
+
+input CreateIngredientsInput {
+  connect: [ID!]
+}
+
+input CreateIngredientInput {
+  id: String!
+}
+
+type Shop {
+  id: ID!
+  name: String!
+  address: String
+  pic: String
+  genre: Genre @hasOne
+  menus: [Menu!]! @hasMany
+}
+
+type Menu {
+  id: ID!
+  name: String!
+  pic: String
+  ingredients: [Ingredient!]! @belongsToMany
+}
+
 type Ingredient {
   id: ID!
   name: String!
