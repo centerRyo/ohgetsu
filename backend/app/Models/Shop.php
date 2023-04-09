@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Shop extends Model
 {
@@ -13,7 +15,11 @@ class Shop extends Model
         'genre_id'
     ];
 
-    public function genre() {
-        return $this->hasOne('App\Models\Genre', 'id', 'genre_id');
+    public function genre(): HasOne {
+        return $this->hasOne(Genre::class, 'id', 'genre_id');
+    }
+
+    public function menus(): HasMany {
+        return $this->hasMany(Menu::class);
     }
 }
