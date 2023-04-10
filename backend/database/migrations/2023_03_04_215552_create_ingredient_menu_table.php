@@ -17,7 +17,8 @@ class CreateIngredientMenuTable extends Migration
             $table->id();
             $table->foreignId('ingredient_id')->constrained('ingredients')->comment('原材料ID');
             $table->foreignId('menu_id')->constrained('menus')->comment('メニューID');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
