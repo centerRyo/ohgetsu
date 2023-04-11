@@ -24,16 +24,24 @@ export type CreateIngredientInput = {
   id: Scalars['String'];
 };
 
+export type CreateIngredientsInput = {
+  connect?: InputMaybe<Array<Scalars['ID']>>;
+};
+
 export type CreateMenuInput = {
-  ingredients?: InputMaybe<CreateIngredientInput>;
+  ingredients?: InputMaybe<CreateIngredientsInput>;
   name: Scalars['String'];
   pic?: InputMaybe<Scalars['String']>;
+};
+
+export type CreateMenusInput = {
+  create: Array<CreateMenuInput>;
 };
 
 export type CreateShopInput = {
   address?: InputMaybe<Scalars['String']>;
   genre_id: Scalars['String'];
-  menus: Array<CreateMenuInput>;
+  menus?: InputMaybe<CreateMenusInput>;
   name: Scalars['String'];
   pic?: InputMaybe<Scalars['String']>;
 };

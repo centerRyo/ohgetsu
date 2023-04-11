@@ -1,3 +1,4 @@
+import { useRegisterShopPageShopCreateMutation } from '@/graphql/generated';
 import React, { useCallback } from 'react';
 import { FormValues, PreviewType } from './index.d';
 
@@ -7,9 +8,38 @@ type TUseHandlerArgs = {
 };
 
 export const useHandler = ({ preview, setPreview }: TUseHandlerArgs) => {
-  const handleSubmit = useCallback((values: FormValues) => {
-    console.log(values);
-  }, []);
+  const [register] = useRegisterShopPageShopCreateMutation();
+
+  const handleSubmit = useCallback(
+    async (values: FormValues) => {
+      try {
+        const { errors } = await register({
+          variables: {
+            input: {
+              ...values,
+              menus: {
+                create: values.menus.map((menu) => {
+                  return {
+                    name: menu.name,
+                    pic: menu.pic,
+                    ingredients: {
+                      connect: menu.ingredients,
+                    },
+                  };
+                }),
+              },
+            },
+          },
+          errorPolicy: 'all',
+        });
+
+        if (errors) throw errors;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [register]
+  );
 
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

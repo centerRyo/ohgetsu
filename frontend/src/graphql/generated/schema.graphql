@@ -12,13 +12,21 @@ input CreateShopInput {
   address: String
   pic: String
   genre_id: String!
-  menus: [CreateMenuInput!]!
+  menus: CreateMenusInput
+}
+
+input CreateMenusInput {
+  create: [CreateMenuInput!]!
 }
 
 input CreateMenuInput {
   name: String!
   pic: String
-  ingredients: CreateIngredientInput
+  ingredients: CreateIngredientsInput
+}
+
+input CreateIngredientsInput {
+  connect: [ID!]
 }
 
 input CreateIngredientInput {
