@@ -1,13 +1,15 @@
 import { useRegisterShopPageShopCreateMutation } from '@/graphql/generated';
 import React, { useCallback } from 'react';
+import { UseFormReset } from 'react-hook-form';
 import { FormValues, PreviewType } from './index.d';
 
 type TUseHandlerArgs = {
   preview: PreviewType;
   setPreview: (preview: PreviewType) => void;
+  reset: UseFormReset<FormValues>;
 };
 
-export const useHandler = ({ preview, setPreview }: TUseHandlerArgs) => {
+export const useHandler = ({ preview, setPreview, reset }: TUseHandlerArgs) => {
   const [register] = useRegisterShopPageShopCreateMutation();
 
   const handleSubmit = useCallback(
@@ -34,6 +36,8 @@ export const useHandler = ({ preview, setPreview }: TUseHandlerArgs) => {
         });
 
         if (errors) throw errors;
+
+        reset();
       } catch (error) {
         console.error(error);
       }
