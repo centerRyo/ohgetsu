@@ -61,7 +61,7 @@ export type MenuType = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createShop: Shop;
+  createShop: ShopType;
 };
 
 
@@ -75,8 +75,8 @@ export type Query = {
   ingredients: Array<IngredientType>;
 };
 
-export type Shop = {
-  __typename?: 'Shop';
+export type ShopType = {
+  __typename?: 'ShopType';
   address?: Maybe<Scalars['String']>;
   genre?: Maybe<GenreType>;
   id: Scalars['ID'];

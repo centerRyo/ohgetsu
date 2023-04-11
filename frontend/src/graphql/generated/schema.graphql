@@ -4,7 +4,7 @@ type Query {
 }
 
 type Mutation {
-  createShop(input: CreateShopInput!): Shop!
+  createShop(input: CreateShopInput!): ShopType!
 }
 
 input CreateShopInput {
@@ -25,7 +25,7 @@ input CreateIngredientInput {
   id: String!
 }
 
-type Shop {
+type ShopType {
   id: ID!
   name: String!
   address: String
