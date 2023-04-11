@@ -95,6 +95,13 @@ export type RegisterShopIngredientsQueryVariables = Exact<{ [key: string]: never
 
 export type RegisterShopIngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string }> };
 
+export type RegisterShopPageShopCreateMutationVariables = Exact<{
+  input: CreateShopInput;
+}>;
+
+
+export type RegisterShopPageShopCreateMutation = { __typename?: 'Mutation', createShop: { __typename?: 'ShopType', id: string, name: string, pic?: string | null, address?: string | null, genre?: { __typename?: 'GenreType', id: string, name: string } | null, menus: Array<{ __typename?: 'MenuType', id: string, name: string, pic?: string | null, ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string }> }> } };
+
 
 export const RegisterShopGenresDocument = gql`
     query RegisterShopGenres {
@@ -166,3 +173,52 @@ export function useRegisterShopIngredientsLazyQuery(baseOptions?: Apollo.LazyQue
 export type RegisterShopIngredientsQueryHookResult = ReturnType<typeof useRegisterShopIngredientsQuery>;
 export type RegisterShopIngredientsLazyQueryHookResult = ReturnType<typeof useRegisterShopIngredientsLazyQuery>;
 export type RegisterShopIngredientsQueryResult = Apollo.QueryResult<RegisterShopIngredientsQuery, RegisterShopIngredientsQueryVariables>;
+export const RegisterShopPageShopCreateDocument = gql`
+    mutation RegisterShopPageShopCreate($input: CreateShopInput!) {
+  createShop(input: $input) {
+    id
+    name
+    pic
+    address
+    genre {
+      id
+      name
+    }
+    menus {
+      id
+      name
+      pic
+      ingredients {
+        id
+        name
+      }
+    }
+  }
+}
+    `;
+export type RegisterShopPageShopCreateMutationFn = Apollo.MutationFunction<RegisterShopPageShopCreateMutation, RegisterShopPageShopCreateMutationVariables>;
+
+/**
+ * __useRegisterShopPageShopCreateMutation__
+ *
+ * To run a mutation, you first call `useRegisterShopPageShopCreateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRegisterShopPageShopCreateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [registerShopPageShopCreateMutation, { data, loading, error }] = useRegisterShopPageShopCreateMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useRegisterShopPageShopCreateMutation(baseOptions?: Apollo.MutationHookOptions<RegisterShopPageShopCreateMutation, RegisterShopPageShopCreateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RegisterShopPageShopCreateMutation, RegisterShopPageShopCreateMutationVariables>(RegisterShopPageShopCreateDocument, options);
+      }
+export type RegisterShopPageShopCreateMutationHookResult = ReturnType<typeof useRegisterShopPageShopCreateMutation>;
+export type RegisterShopPageShopCreateMutationResult = Apollo.MutationResult<RegisterShopPageShopCreateMutation>;
+export type RegisterShopPageShopCreateMutationOptions = Apollo.BaseMutationOptions<RegisterShopPageShopCreateMutation, RegisterShopPageShopCreateMutationVariables>;
