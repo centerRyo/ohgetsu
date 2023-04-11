@@ -20,6 +20,24 @@ export enum Category {
   Sub = 'SUB'
 }
 
+export type CreateIngredientInput = {
+  id: Scalars['String'];
+};
+
+export type CreateMenuInput = {
+  ingredients?: InputMaybe<CreateIngredientInput>;
+  name: Scalars['String'];
+  pic?: InputMaybe<Scalars['String']>;
+};
+
+export type CreateShopInput = {
+  address?: InputMaybe<Scalars['String']>;
+  genre_id: Scalars['String'];
+  menus: Array<CreateMenuInput>;
+  name: Scalars['String'];
+  pic?: InputMaybe<Scalars['String']>;
+};
+
 export type GenreType = {
   __typename?: 'GenreType';
   id: Scalars['ID'];
@@ -33,10 +51,38 @@ export type IngredientType = {
   name: Scalars['String'];
 };
 
+export type MenuType = {
+  __typename?: 'MenuType';
+  id: Scalars['ID'];
+  ingredients: Array<IngredientType>;
+  name: Scalars['String'];
+  pic?: Maybe<Scalars['String']>;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createShop: ShopType;
+};
+
+
+export type MutationCreateShopArgs = {
+  input: CreateShopInput;
+};
+
 export type Query = {
   __typename?: 'Query';
   genres: Array<GenreType>;
   ingredients: Array<IngredientType>;
+};
+
+export type ShopType = {
+  __typename?: 'ShopType';
+  address?: Maybe<Scalars['String']>;
+  genre?: Maybe<GenreType>;
+  id: Scalars['ID'];
+  menus: Array<MenuType>;
+  name: Scalars['String'];
+  pic?: Maybe<Scalars['String']>;
 };
 
 export type RegisterShopGenresQueryVariables = Exact<{ [key: string]: never; }>;
