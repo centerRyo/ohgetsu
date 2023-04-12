@@ -1,0 +1,21 @@
+mutation RegisterShopPageShopCreate($input: CreateShopInput!) {
+  createShop(input: $input) {
+    id
+    name
+    pic
+    address
+    genre {
+      id
+      name
+    }
+    menus {
+      id
+      name
+      pic
+      ingredients {
+        id
+        name
+      }
+    }
+  }
+}

@@ -31,5 +31,6 @@
   "files.trimTrailingWhitespace": true,
   "npm.packageManager": "yarn",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "frontend/node_modules/typescript/lib",
   "cSpell.words": ["Chakra", "codegen", "testid"]
 }

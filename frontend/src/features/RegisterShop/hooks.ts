@@ -1,15 +1,63 @@
+import { useRegisterShopPageShopCreateMutation } from '@/graphql/generated';
+import { useToast } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
+import { UseFormReset } from 'react-hook-form';
 import { FormValues, PreviewType } from './index.d';
 
 type TUseHandlerArgs = {
   preview: PreviewType;
   setPreview: (preview: PreviewType) => void;
+  reset: UseFormReset<FormValues>;
 };
 
-export const useHandler = ({ preview, setPreview }: TUseHandlerArgs) => {
-  const handleSubmit = useCallback((values: FormValues) => {
-    console.log(values);
-  }, []);
+export const useHandler = ({ preview, setPreview, reset }: TUseHandlerArgs) => {
+  const toast = useToast();
+  const [register] = useRegisterShopPageShopCreateMutation();
+
+  const handleSubmit = useCallback(
+    async (values: FormValues) => {
+      try {
+        const { errors } = await register({
+          variables: {
+            input: {
+              ...values,
+              menus: {
+                create: values.menus.map((menu) => {
+                  return {
+                    name: menu.name,
+                    pic: menu.pic,
+                    ingredients: {
+                      connect: menu.ingredients,
+                    },
+                  };
+                }),
+              },
+            },
+          },
+          errorPolicy: 'all',
+        });
+
+        if (errors) throw errors;
+
+        reset();
+
+        toast({
+          title: 'お店情報を登録しました',
+          status: 'success',
+          isClosable: true,
+        });
+      } catch (error) {
+        console.error(error);
+
+        toast({
+          title: 'お店情報を登録できませんでした',
+          status: 'error',
+          isClosable: true,
+        });
+      }
+    },
+    [register, toast]
+  );
 
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

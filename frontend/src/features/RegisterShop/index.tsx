@@ -21,6 +21,7 @@ const RegisterShop = memo(() => {
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
     control,
+    reset,
   } = useForm<FormValues>({
     mode: 'all',
     defaultValues: {
@@ -42,6 +43,7 @@ const RegisterShop = memo(() => {
   const { handleSubmit: onSubmit, handleFileChange } = useHandler({
     preview,
     setPreview,
+    reset,
   });
 
   const handleAddMenu = () => append([{ name: '', ingredients: [], pic: '' }]);
