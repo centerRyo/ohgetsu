@@ -1,19 +1,7 @@
-import { useIngredientsQuery } from '@/graphql/generated';
-import { HStack, Tag } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 const SamplePage: NextPage = () => {
-  const { data } = useIngredientsQuery();
-  const ingredients = data?.ingredients || [];
-  return (
-    <HStack>
-      {ingredients.map((ingredient) => (
-        <Tag key={ingredient.id} colorScheme='blue'>
-          {ingredient.name}
-        </Tag>
-      ))}
-    </HStack>
-  );
+  return <div>Top</div>;
 };
 
 export default SamplePage;
