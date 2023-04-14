@@ -1,6 +1,7 @@
 type Query {
   ingredients: [Ingredient!]! @all
   genres: [Genre!]! @all
+  shops: [Shop!]! @all @orderBy(column: "updated_at", direction: DESC)
 }
 
 type Mutation {
