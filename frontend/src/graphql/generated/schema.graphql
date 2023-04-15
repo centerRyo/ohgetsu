@@ -1,6 +1,7 @@
 type Query {
   ingredients: [IngredientType!]!
   genres: [GenreType!]!
+  shops: [ShopType!]!
 }
 
 type Mutation {
