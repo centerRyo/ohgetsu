@@ -25,8 +25,8 @@ class ShopFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'address' => $this->faker->text(),
-            'pic' => $this->faker->text(),
+            'address' => $this->faker->address(),
+            'pic' => $this->faker->filePath(),
             'genre_id' => Genre::factory(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
