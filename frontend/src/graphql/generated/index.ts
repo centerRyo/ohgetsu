@@ -81,6 +81,7 @@ export type Query = {
   __typename?: 'Query';
   genres: Array<GenreType>;
   ingredients: Array<IngredientType>;
+  shops: Array<ShopType>;
 };
 
 export type ShopType = {
