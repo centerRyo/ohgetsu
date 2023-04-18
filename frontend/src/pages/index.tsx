@@ -1,8 +1,5 @@
-import type { NextPage } from 'next';
-import Link from 'next/link';
+import ShopsPage from './shops';
 
-const SamplePage: NextPage = () => {
-  return <Link href='/register_shop'>お店情報登録ページへ</Link>;
-};
+const RootPage = ShopsPage;
 
-export default SamplePage;
+export default RootPage;

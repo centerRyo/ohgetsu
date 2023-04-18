@@ -111,6 +111,11 @@ export type RegisterShopPageShopCreateMutationVariables = Exact<{
 
 export type RegisterShopPageShopCreateMutation = { __typename?: 'Mutation', createShop: { __typename?: 'ShopType', id: string, name: string, pic?: string | null, address?: string | null, genre?: { __typename?: 'GenreType', id: string, name: string } | null, menus: Array<{ __typename?: 'MenuType', id: string, name: string, pic?: string | null, ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string }> }> } };
 
+export type ShopsPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ShopsPageQuery = { __typename?: 'Query', shops: Array<{ __typename?: 'ShopType', id: string, name: string, address?: string | null, pic?: string | null, genre?: { __typename?: 'GenreType', id: string, name: string } | null }> };
+
 
 export const RegisterShopGenresDocument = gql`
     query RegisterShopGenres {
@@ -231,3 +236,44 @@ export function useRegisterShopPageShopCreateMutation(baseOptions?: Apollo.Mutat
 export type RegisterShopPageShopCreateMutationHookResult = ReturnType<typeof useRegisterShopPageShopCreateMutation>;
 export type RegisterShopPageShopCreateMutationResult = Apollo.MutationResult<RegisterShopPageShopCreateMutation>;
 export type RegisterShopPageShopCreateMutationOptions = Apollo.BaseMutationOptions<RegisterShopPageShopCreateMutation, RegisterShopPageShopCreateMutationVariables>;
+export const ShopsPageDocument = gql`
+    query ShopsPage {
+  shops {
+    id
+    name
+    address
+    pic
+    genre {
+      id
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useShopsPageQuery__
+ *
+ * To run a query within a React component, call `useShopsPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useShopsPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useShopsPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useShopsPageQuery(baseOptions?: Apollo.QueryHookOptions<ShopsPageQuery, ShopsPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ShopsPageQuery, ShopsPageQueryVariables>(ShopsPageDocument, options);
+      }
+export function useShopsPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ShopsPageQuery, ShopsPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ShopsPageQuery, ShopsPageQueryVariables>(ShopsPageDocument, options);
+        }
+export type ShopsPageQueryHookResult = ReturnType<typeof useShopsPageQuery>;
+export type ShopsPageLazyQueryHookResult = ReturnType<typeof useShopsPageLazyQuery>;
+export type ShopsPageQueryResult = Apollo.QueryResult<ShopsPageQuery, ShopsPageQueryVariables>;
