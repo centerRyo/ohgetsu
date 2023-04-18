@@ -67,7 +67,7 @@ const Shops = memo(() => {
                 </a>
               </Link>
             ))
-          : [1, 2, 3].map((_) => (
+          : [1, 2, 3, 4, 5, 6, 7, 8].map((_) => (
               <Skeleton height='250px' width='200px' key={_} />
             ))}
       </SimpleGrid>
