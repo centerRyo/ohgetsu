@@ -1,0 +1,12 @@
+query ShopsPage {
+  shops {
+    id
+    name
+    address
+    pic
+    genre {
+      id
+      name
+    }
+  }
+}
