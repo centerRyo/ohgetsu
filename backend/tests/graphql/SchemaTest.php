@@ -1,16 +1,10 @@
 <?php
 
 use App\Models\Shop;
-use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
-use Nuwave\Lighthouse\Testing\RefreshesSchemaCache;
-use Tests\CreatesApplication;
 use Tests\TestCase;
 
 class SchemaTest extends TestCase
 {
-	use MakesGraphQLRequests;
-	use RefreshesSchemaCache;
-
 	/** @test */
     public function ショップ一覧クエリを返却する(): void
     {
