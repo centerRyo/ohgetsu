@@ -3,13 +3,10 @@
 namespace Tests\GraphQL\Queries;
 
 use App\Models\Shop;
-use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
 use Tests\TestCase;
 
 class ShopResolverTest extends TestCase
 {
-    use MakesGraphQLRequests;
-
     /** @test */
     public function 指定したIDのショップを取得できる(): void
     {
@@ -33,4 +30,21 @@ class ShopResolverTest extends TestCase
             ]
         ]);
     }
+
+    // /** @test */
+    // public function 存在しないIDが指定された場合404エラーを返す(): void
+    // {
+    //   Shop::factory(2)->create();
+
+    //   $this->graphQL('
+    //       query($id: ID!) {
+    //           shop(id: $id) {
+    //               name
+    //               address
+    //           }
+    //       }
+    //   ', [
+    //       'id' => 100000
+    //   ])->assertGraphQLErrorMessage('not found');
+    // }
 }
