@@ -57,6 +57,7 @@ export type IngredientType = {
   category?: Maybe<Category>;
   id: Scalars['ID'];
   name: Scalars['String'];
+  pic: Scalars['String'];
 };
 
 export type MenuType = {

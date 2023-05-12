@@ -54,6 +54,7 @@ type Menu {
 type Ingredient {
   id: ID!
   name: String!
+  pic: String!
   category: Category
 }
 

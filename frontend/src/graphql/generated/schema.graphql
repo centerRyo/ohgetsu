@@ -53,6 +53,7 @@ type MenuType {
 type IngredientType {
   id: ID!
   name: String!
+  pic: String!
   category: Category
 }
 
