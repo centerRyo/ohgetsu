@@ -1,11 +1,16 @@
-import { Heading } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { Button, Flex, Heading } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { FC, memo, useCallback } from 'react';
 import styles from './index.module.scss';
 import Ingredients from './Ingredients';
 
 type Props = {};
 
 const Shop: FC<Props> = memo(({}) => {
+  const router = useRouter();
+
+  const handleBack = useCallback(() => router.push('/'), [router]);
+
   return (
     <div className={styles.container}>
       <Heading mb={8}>ちゃぶとんとんこつラーメンヨドバシ横浜店</Heading>
@@ -22,6 +27,30 @@ const Shop: FC<Props> = memo(({}) => {
       </section>
 
       <Ingredients />
+
+      <Flex justifyContent='center'>
+        <Button
+          size='lg'
+          type='submit'
+          colorScheme='green'
+          width='100%'
+          maxWidth='30rem'
+        >
+          検索
+        </Button>
+      </Flex>
+      <Flex justifyContent='center' mt={8}>
+        <Button
+          size='lg'
+          colorScheme='green'
+          variant='outline'
+          width='100%'
+          maxWidth='30rem'
+          onClick={handleBack}
+        >
+          店舗を再検索する
+        </Button>
+      </Flex>
     </div>
   );
 });
