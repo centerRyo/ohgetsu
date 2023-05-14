@@ -11,12 +11,14 @@ const Shop: FC<Props> = memo(({}) => {
       <Heading mb={8}>ちゃぶとんとんこつラーメンヨドバシ横浜店</Heading>
 
       <section className={styles.explanation}>
-        <p>アレルギー物質を選択してください</p>
-        <p>(複数選択可)</p>
-        <p>
-          (選択した物質を<span className={styles.unused}>使用していない</span>
-          メニューが表示されます)
-        </p>
+        <div className={styles.wrapper}>
+          <p>アレルギー物質を選択してください</p>
+          <p>(複数選択可)</p>
+          <p>
+            (選択した物質を<span className={styles.unused}>使用していない</span>
+            メニューが表示されます)
+          </p>
+        </div>
       </section>
 
       <Ingredients />

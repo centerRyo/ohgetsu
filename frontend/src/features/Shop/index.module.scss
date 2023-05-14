@@ -1,5 +1,7 @@
 .container {
   padding: 2rem 0;
+  max-width: 60rem;
+  margin: 0 auto;
 
   .explanation {
     // 親要素を超えて横幅いっぱいにする
@@ -11,6 +13,11 @@
     border-top: 1px solid black;
     padding: 1rem 1.5rem;
     background: #edf2f7;
+
+    .wrapper {
+      max-width: 60rem;
+      margin: 0 auto;
+    }
 
     .unused {
       color: #e53e3e;
