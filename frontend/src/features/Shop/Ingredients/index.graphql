@@ -1,0 +1,7 @@
+query ShopPageIngredients {
+  ingredients {
+    id
+    name
+    pic
+  }
+}

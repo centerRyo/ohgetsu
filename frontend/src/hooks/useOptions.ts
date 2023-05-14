@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 type TOption = Record<'label' | 'value', string>;
 
-type TOptionIncremental = { key?: string } & TOption;
+type TOptionIncremental = { key?: string; pic?: string } & TOption;
 
 type TOptionsIncremental = TOptionIncremental[];
 
@@ -19,6 +19,7 @@ type TUseCustomOptionArgs<TItem> = {
 type TUseCustomOptions = <
   TItem extends {
     id: string;
+    pic?: string;
   }
 >(
   args: TUseCustomOptionArgs<TItem>
@@ -52,6 +53,48 @@ export const useCustomOptions: TUseCustomOptions = ({
         return {
           value,
           label,
+          key,
+        };
+      })
+    );
+
+    return options;
+  }, [items]);
+
+  return result;
+};
+
+export const useCustomOptionsWithPic: TUseCustomOptions = ({
+  items,
+  getLabel,
+  getValue,
+  getKey,
+  defaultLabel = '-',
+  ignoreDefault = false,
+}) => {
+  const result = useMemo(() => {
+    const defaultOptions = ignoreDefault
+      ? []
+      : [
+          {
+            value: '',
+            label: defaultLabel,
+            pic: '',
+            key: '',
+          },
+        ];
+
+    const options = defaultOptions.concat(
+      (items || []).map((item) => {
+        const label = getLabel(item);
+        const key = getKey ? getKey(item) : label;
+        const value = getValue ? getValue(item) : item.id;
+        const pic = item.pic ? item.pic : '';
+
+        return {
+          value,
+          label,
+          pic,
           key,
         };
       })
