@@ -57,6 +57,7 @@ export type IngredientType = {
   category?: Maybe<Category>;
   id: Scalars['ID'];
   name: Scalars['String'];
+  pic: Scalars['String'];
 };
 
 export type MenuType = {
@@ -110,6 +111,11 @@ export type RegisterShopPageShopCreateMutationVariables = Exact<{
 
 
 export type RegisterShopPageShopCreateMutation = { __typename?: 'Mutation', createShop: { __typename?: 'ShopType', id: string, name: string, pic?: string | null, address?: string | null, genre?: { __typename?: 'GenreType', id: string, name: string } | null, menus: Array<{ __typename?: 'MenuType', id: string, name: string, pic?: string | null, ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string }> }> } };
+
+export type ShopPageIngredientsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ShopPageIngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string, pic: string }> };
 
 export type ShopsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -236,6 +242,42 @@ export function useRegisterShopPageShopCreateMutation(baseOptions?: Apollo.Mutat
 export type RegisterShopPageShopCreateMutationHookResult = ReturnType<typeof useRegisterShopPageShopCreateMutation>;
 export type RegisterShopPageShopCreateMutationResult = Apollo.MutationResult<RegisterShopPageShopCreateMutation>;
 export type RegisterShopPageShopCreateMutationOptions = Apollo.BaseMutationOptions<RegisterShopPageShopCreateMutation, RegisterShopPageShopCreateMutationVariables>;
+export const ShopPageIngredientsDocument = gql`
+    query ShopPageIngredients {
+  ingredients {
+    id
+    name
+    pic
+  }
+}
+    `;
+
+/**
+ * __useShopPageIngredientsQuery__
+ *
+ * To run a query within a React component, call `useShopPageIngredientsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useShopPageIngredientsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useShopPageIngredientsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useShopPageIngredientsQuery(baseOptions?: Apollo.QueryHookOptions<ShopPageIngredientsQuery, ShopPageIngredientsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ShopPageIngredientsQuery, ShopPageIngredientsQueryVariables>(ShopPageIngredientsDocument, options);
+      }
+export function useShopPageIngredientsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ShopPageIngredientsQuery, ShopPageIngredientsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ShopPageIngredientsQuery, ShopPageIngredientsQueryVariables>(ShopPageIngredientsDocument, options);
+        }
+export type ShopPageIngredientsQueryHookResult = ReturnType<typeof useShopPageIngredientsQuery>;
+export type ShopPageIngredientsLazyQueryHookResult = ReturnType<typeof useShopPageIngredientsLazyQuery>;
+export type ShopPageIngredientsQueryResult = Apollo.QueryResult<ShopPageIngredientsQuery, ShopPageIngredientsQueryVariables>;
 export const ShopsPageDocument = gql`
     query ShopsPage {
   shops {
