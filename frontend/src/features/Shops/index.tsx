@@ -36,7 +36,12 @@ const Shops = memo(() => {
                     <CardHeader>
                       <Box className={styles.imageWrap}>
                         <Image
-                          src={shop.pic ? shop.pic : '/images/no_image.png'}
+                          src={
+                            shop.pic
+                              ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${shop.pic}`
+                              : '/images/no_image.png'
+                          }
+                          alt={shop.name}
                           fit='fill'
                           objectFit='cover'
                           borderRadius='md'
