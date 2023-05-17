@@ -1,3 +1,4 @@
+import { useShopPageQuery } from '@/graphql/generated';
 import { Button, Flex, Heading } from '@chakra-ui/react';
 import { FC, memo } from 'react';
 import { useForm } from 'react-hook-form';
@@ -6,15 +7,23 @@ import { FormValues } from './index.d';
 import styles from './index.module.scss';
 import Ingredients from './Ingredients';
 
-type Props = {};
+type Props = {
+  shopId: string;
+};
 
-const Shop: FC<Props> = memo(({}) => {
+const Shop: FC<Props> = memo(({ shopId }) => {
+  const { data, loading } = useShopPageQuery({
+    variables: { shop_id: shopId },
+  });
+
+  const shop = data?.shop;
+
   const { register, getValues } = useForm<FormValues>();
   const { handleClickSearch, handleBack } = useHandler({ getValues });
 
   return (
     <div className={styles.container}>
-      <Heading mb={8}>ちゃぶとんとんこつラーメンヨドバシ横浜店</Heading>
+      <Heading mb={8}>{shop?.name}</Heading>
 
       <section className={styles.explanation}>
         <div className={styles.wrapper}>

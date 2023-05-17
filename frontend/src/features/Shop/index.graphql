@@ -1,0 +1,6 @@
+query ShopPage($shop_id: ID!) {
+  shop(id: $shop_id) {
+    id
+    name
+  }
+}
