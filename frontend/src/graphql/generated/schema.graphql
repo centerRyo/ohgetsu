@@ -2,6 +2,7 @@ type Query {
   ingredients: [IngredientType!]!
   genres: [GenreType!]!
   shops: [ShopType!]!
+  shop(id: ID!): ShopType!
 }
 
 type Mutation {

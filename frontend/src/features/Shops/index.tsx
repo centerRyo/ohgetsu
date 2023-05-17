@@ -1,4 +1,5 @@
 import { useShopsPageQuery } from '@/graphql/generated';
+import { pagesPath } from '@/utils/$path';
 import {
   Box,
   Card,
@@ -11,6 +12,7 @@ import {
   Skeleton,
   Tag,
   Text,
+  Tooltip,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { memo } from 'react';
@@ -30,13 +32,18 @@ const Shops = memo(() => {
       >
         {!loading
           ? shops.map((shop) => (
-              <Link href='' key={shop.id}>
+              <Link href={pagesPath.shops._id(shop.id).$url()} key={shop.id}>
                 <a>
                   <Card>
                     <CardHeader>
                       <Box className={styles.imageWrap}>
                         <Image
-                          src={shop.pic ? shop.pic : '/images/no_image.png'}
+                          src={
+                            shop.pic
+                              ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${shop.pic}`
+                              : '/images/no_image.png'
+                          }
+                          alt={shop.name}
                           fit='fill'
                           objectFit='cover'
                           borderRadius='md'
@@ -44,9 +51,16 @@ const Shops = memo(() => {
                       </Box>
                     </CardHeader>
                     <CardBody>
-                      <Heading size='md' noOfLines={2} height='48px'>
-                        {shop.name}
-                      </Heading>
+                      <Tooltip
+                        label={shop.name}
+                        hasArrow
+                        bg='green'
+                        fontWeight='bold'
+                      >
+                        <Heading size='md' noOfLines={2} height='48px'>
+                          {shop.name}
+                        </Heading>
+                      </Tooltip>
                       <Tag
                         variant='outline'
                         mt={4}
