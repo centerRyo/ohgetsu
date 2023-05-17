@@ -82,7 +82,13 @@ export type Query = {
   __typename?: 'Query';
   genres: Array<GenreType>;
   ingredients: Array<IngredientType>;
+  shop: ShopType;
   shops: Array<ShopType>;
+};
+
+
+export type QueryShopArgs = {
+  id: Scalars['ID'];
 };
 
 export type ShopType = {
