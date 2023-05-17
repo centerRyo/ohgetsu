@@ -1,4 +1,5 @@
 import { useShopsPageQuery } from '@/graphql/generated';
+import { pagesPath } from '@/utils/$path';
 import {
   Box,
   Card,
@@ -31,7 +32,7 @@ const Shops = memo(() => {
       >
         {!loading
           ? shops.map((shop) => (
-              <Link href='' key={shop.id}>
+              <Link href={pagesPath.shops._id(shop.id).$url()} key={shop.id}>
                 <a>
                   <Card>
                     <CardHeader>
