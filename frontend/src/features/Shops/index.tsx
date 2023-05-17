@@ -11,6 +11,7 @@ import {
   Skeleton,
   Tag,
   Text,
+  Tooltip,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { memo } from 'react';
@@ -49,9 +50,16 @@ const Shops = memo(() => {
                       </Box>
                     </CardHeader>
                     <CardBody>
-                      <Heading size='md' noOfLines={2} height='48px'>
-                        {shop.name}
-                      </Heading>
+                      <Tooltip
+                        label={shop.name}
+                        hasArrow
+                        bg='green'
+                        fontWeight='bold'
+                      >
+                        <Heading size='md' noOfLines={2} height='48px'>
+                          {shop.name}
+                        </Heading>
+                      </Tooltip>
                       <Tag
                         variant='outline'
                         mt={4}
