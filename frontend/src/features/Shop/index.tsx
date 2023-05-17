@@ -1,5 +1,5 @@
 import { useShopPageQuery } from '@/graphql/generated';
-import { Button, Flex, Heading } from '@chakra-ui/react';
+import { Button, Flex, Heading, Skeleton } from '@chakra-ui/react';
 import { FC, memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHandler } from './hooks';
@@ -23,7 +23,11 @@ const Shop: FC<Props> = memo(({ shopId }) => {
 
   return (
     <div className={styles.container}>
-      <Heading mb={8}>{shop?.name}</Heading>
+      {!loading ? (
+        <Heading mb={8}>{shop?.name}</Heading>
+      ) : (
+        <Skeleton height='2rem' mb={8} />
+      )}
 
       <section className={styles.explanation}>
         <div className={styles.wrapper}>
