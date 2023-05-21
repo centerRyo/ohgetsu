@@ -1,14 +1,17 @@
 <?php
 
+use App\Models\Ingredient;
 use App\Models\Menu;
 use Tests\TestCase;
 
 class MenusResolverTest extends TestCase
 {
 	/** @test */
-	public function 指定したショップIDのメニューを取得できる(): void
+	public function 指定したショップID、原材料IDのメニューを取得できる(): void
 	{
 		$menus = Menu::factory(3)->create();
+
+		Ingredient::factory(3)->create();
 
 		$this->graphQL('
 			query($shop_id: ID!, $excluded_ingredient_ids: [ID]!) {
@@ -20,7 +23,7 @@ class MenusResolverTest extends TestCase
 			}
 		', [
 			'shop_id' => $menus->first()->shop_id,
-			'excluded_ingredient_ids' => [],
+			'excluded_ingredient_ids' => [1, 3],
 		])->assertJson([
 			'data' => [
 				'menus' => [[
