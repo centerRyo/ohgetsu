@@ -2,6 +2,9 @@ export const pagesPath = {
   "index_test": {
     $url: (url?: { hash?: string }) => ({ pathname: '/index.test' as const, hash: url?.hash })
   },
+  "menus": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/menus' as const, hash: url?.hash })
+  },
   "register_shop": {
     $url: (url?: { hash?: string }) => ({ pathname: '/register_shop' as const, hash: url?.hash })
   },
