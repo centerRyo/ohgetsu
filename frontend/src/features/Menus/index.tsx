@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -11,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FC, memo } from 'react';
+import { useHandler } from './hooks';
 import styles from './index.module.scss';
 import { MenusSearchCondition } from './utils';
 
@@ -19,6 +21,10 @@ type Props = {
 };
 
 export const Menus: FC<Props> = memo(({ searchCondition }) => {
+  const { handleBack } = useHandler({
+    shopId: searchCondition.shop_id as string,
+  });
+
   return (
     <div className={styles.container}>
       <Heading mb={8}>
@@ -67,6 +73,17 @@ export const Menus: FC<Props> = memo(({ searchCondition }) => {
           </Link>
         </SimpleGrid>
       </section>
+
+      <Flex justifyContent='center'>
+        <Button
+          size='lg'
+          colorScheme='green'
+          variant='outline'
+          onClick={handleBack}
+        >
+          アレルギー物質を変更して検索する
+        </Button>
+      </Flex>
     </div>
   );
 });
