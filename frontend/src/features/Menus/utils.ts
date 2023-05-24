@@ -22,14 +22,14 @@ type TCreateMenusSearchCondition = (
 export const CreateMenusSearchCondition: TCreateMenusSearchCondition = (
   query
 ) => {
-  const { shop_id, excluded_ingredient_ids } = query;
+  const { shopId, excludedIngredientIds } = query;
 
   const requiredParams: MenusSearchConditionRequired = {
-    shopId: getStringParams(shop_id),
+    shopId: getStringParams(shopId),
   };
 
   const optionalParams: MenusSearchConditionOptional = {
-    excludedIngredientIds: getStringParams(excluded_ingredient_ids),
+    excludedIngredientIds: getStringParams(excludedIngredientIds),
   };
 
   const searchCondition = {
