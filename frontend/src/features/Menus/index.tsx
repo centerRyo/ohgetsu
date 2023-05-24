@@ -10,10 +10,15 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { memo } from 'react';
+import { FC, memo } from 'react';
 import styles from './index.module.scss';
+import { MenusSearchCondition } from './utils';
 
-export const Menus = memo(() => {
+type Props = {
+  searchCondition: MenusSearchCondition;
+};
+
+export const Menus: FC<Props> = memo(({ searchCondition }) => {
   return (
     <div className={styles.container}>
       <Heading mb={8}>
