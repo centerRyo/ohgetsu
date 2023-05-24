@@ -16,11 +16,11 @@ export const useHandler = ({ getValues, shopId }: TUseHandlerArgs) => {
   const handleClickSearch = useCallback(() => {
     const values = getValues();
 
-    const queryParams = values.ingredients.join(',');
+    const excludedIngredientIds = values.ingredients.join(',');
 
     router.push(
       pagesPath.menus.$url({
-        query: { shop_id: shopId, excluded_ingredient_ids: queryParams },
+        query: { shopId, excludedIngredientIds },
       })
     );
   }, [getValues]);

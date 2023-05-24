@@ -22,7 +22,7 @@ type Props = {
 
 export const Menus: FC<Props> = memo(({ searchCondition }) => {
   const { handleBack } = useHandler({
-    shopId: searchCondition.shop_id as string,
+    shopId: searchCondition.shopId,
   });
 
   return (

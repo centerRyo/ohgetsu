@@ -1,12 +1,17 @@
 import { getStringParams } from '@/utils/search-util';
 import { NextRouter } from 'next/router';
 
-export type MenusSearchCondition = Readonly<MenusSearchConditionOptional>;
+export type MenusSearchCondition = Readonly<
+  MenusSearchConditionRequired & MenusSearchConditionOptional
+>;
+
+type MenusSearchConditionRequired = Readonly<{
+  shopId: string;
+}>;
 
 type MenusSearchConditionOptional = Readonly<
   Partial<{
-    shop_id: string;
-    excluded_ingredient_ids: string;
+    excludedIngredientIds: string;
   }>
 >;
 
@@ -19,12 +24,16 @@ export const CreateMenusSearchCondition: TCreateMenusSearchCondition = (
 ) => {
   const { shop_id, excluded_ingredient_ids } = query;
 
+  const requiredParams: MenusSearchConditionRequired = {
+    shopId: getStringParams(shop_id),
+  };
+
   const optionalParams: MenusSearchConditionOptional = {
-    shop_id: getStringParams(shop_id),
-    excluded_ingredient_ids: getStringParams(excluded_ingredient_ids),
+    excludedIngredientIds: getStringParams(excluded_ingredient_ids),
   };
 
   const searchCondition = {
+    ...requiredParams,
     ...optionalParams,
   };
 
