@@ -1,0 +1,22 @@
+.container {
+  padding: 2rem 0;
+  max-width: 60rem;
+  margin: 0 auto;
+
+  .subtitle {
+    padding: 1rem 1.5rem;
+    background: #edf2f7;
+
+    .ingredient {
+      background: #38a169;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+  }
+
+  .menus {
+    margin: 40px 0;
+  }
+}

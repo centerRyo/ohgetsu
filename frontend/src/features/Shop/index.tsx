@@ -19,7 +19,7 @@ const Shop: FC<Props> = memo(({ shopId }) => {
   const shop = data?.shop;
 
   const { register, getValues } = useForm<FormValues>();
-  const { handleClickSearch, handleBack } = useHandler({ getValues });
+  const { handleClickSearch, handleBack } = useHandler({ getValues, shopId });
 
   return (
     <div className={styles.container}>
