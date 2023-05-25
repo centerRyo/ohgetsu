@@ -1,5 +1,7 @@
 type Query {
   ingredients: [Ingredient!]! @all
+  included_ingredients(ids: [ID]!): [Ingredient!]!
+    @field(resolver: "IngredientsResolver@find")
   genres: [Genre!]! @all
   shops: [Shop!]! @all @orderBy(column: "updated_at", direction: DESC)
   shop(id: ID!): Shop! @field(resolver: "ShopResolver@find")
