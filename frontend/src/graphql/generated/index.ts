@@ -81,9 +81,22 @@ export type MutationCreateShopArgs = {
 export type Query = {
   __typename?: 'Query';
   genres: Array<GenreType>;
+  included_ingredients: Array<IngredientType>;
   ingredients: Array<IngredientType>;
+  menus: Array<MenuType>;
   shop: ShopType;
   shops: Array<ShopType>;
+};
+
+
+export type QueryIncluded_IngredientsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']>>;
+};
+
+
+export type QueryMenusArgs = {
+  excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']>>;
+  shop_id: Scalars['ID'];
 };
 
 

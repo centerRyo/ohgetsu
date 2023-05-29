@@ -1,8 +1,10 @@
 type Query {
   ingredients: [IngredientType!]!
+  included_ingredients(ids: [ID]!): [IngredientType!]!
   genres: [GenreType!]!
   shops: [ShopType!]!
   shop(id: ID!): ShopType!
+  menus(shop_id: ID!, excluded_ingredient_ids: [ID]!): [MenuType!]!
 }
 
 type Mutation {
