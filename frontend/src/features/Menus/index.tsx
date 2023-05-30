@@ -57,7 +57,7 @@ export const Menus: FC<Props> = memo(({ searchCondition }) => {
           flexWrap='wrap'
           mb={8}
         >
-          <Flex gap={2} alignItems='center'>
+          <Flex gap={2} alignItems='center' flexWrap='wrap'>
             {ingredients.map((ingredient) => (
               <span className={styles.ingredient} key={ingredient.id}>
                 {ingredient.name}
