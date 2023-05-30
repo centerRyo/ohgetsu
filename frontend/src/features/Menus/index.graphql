@@ -1,0 +1,15 @@
+query MenusPage($shop_id: ID!, $excluded_ingredient_ids: [ID]!) {
+  menus(shop_id: $shop_id, excluded_ingredient_ids: $excluded_ingredient_ids) {
+    id
+    name
+    pic
+  }
+  shop(id: $shop_id) {
+    id
+    name
+  }
+  included_ingredients(ids: $excluded_ingredient_ids) {
+    id
+    name
+  }
+}
