@@ -81,9 +81,22 @@ export type MutationCreateShopArgs = {
 export type Query = {
   __typename?: 'Query';
   genres: Array<GenreType>;
+  included_ingredients: Array<IngredientType>;
   ingredients: Array<IngredientType>;
+  menus: Array<MenuType>;
   shop: ShopType;
   shops: Array<ShopType>;
+};
+
+
+export type QueryIncluded_IngredientsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']>>;
+};
+
+
+export type QueryMenusArgs = {
+  excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']>>;
+  shop_id: Scalars['ID'];
 };
 
 
@@ -100,6 +113,14 @@ export type ShopType = {
   name: Scalars['String'];
   pic?: Maybe<Scalars['String']>;
 };
+
+export type MenusPageQueryVariables = Exact<{
+  shop_id: Scalars['ID'];
+  excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']>> | InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type MenusPageQuery = { __typename?: 'Query', menus: Array<{ __typename?: 'MenuType', id: string, name: string, pic?: string | null }>, shop: { __typename?: 'ShopType', id: string, name: string }, included_ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string }> };
 
 export type RegisterShopGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -136,6 +157,52 @@ export type ShopsPageQueryVariables = Exact<{ [key: string]: never; }>;
 export type ShopsPageQuery = { __typename?: 'Query', shops: Array<{ __typename?: 'ShopType', id: string, name: string, address?: string | null, pic?: string | null, genre?: { __typename?: 'GenreType', id: string, name: string } | null }> };
 
 
+export const MenusPageDocument = gql`
+    query MenusPage($shop_id: ID!, $excluded_ingredient_ids: [ID]!) {
+  menus(shop_id: $shop_id, excluded_ingredient_ids: $excluded_ingredient_ids) {
+    id
+    name
+    pic
+  }
+  shop(id: $shop_id) {
+    id
+    name
+  }
+  included_ingredients(ids: $excluded_ingredient_ids) {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useMenusPageQuery__
+ *
+ * To run a query within a React component, call `useMenusPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMenusPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMenusPageQuery({
+ *   variables: {
+ *      shop_id: // value for 'shop_id'
+ *      excluded_ingredient_ids: // value for 'excluded_ingredient_ids'
+ *   },
+ * });
+ */
+export function useMenusPageQuery(baseOptions: Apollo.QueryHookOptions<MenusPageQuery, MenusPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MenusPageQuery, MenusPageQueryVariables>(MenusPageDocument, options);
+      }
+export function useMenusPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MenusPageQuery, MenusPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MenusPageQuery, MenusPageQueryVariables>(MenusPageDocument, options);
+        }
+export type MenusPageQueryHookResult = ReturnType<typeof useMenusPageQuery>;
+export type MenusPageLazyQueryHookResult = ReturnType<typeof useMenusPageLazyQuery>;
+export type MenusPageQueryResult = Apollo.QueryResult<MenusPageQuery, MenusPageQueryVariables>;
 export const RegisterShopGenresDocument = gql`
     query RegisterShopGenres {
   genres {
