@@ -5,6 +5,7 @@ type Query {
   shops: [ShopType!]!
   shop(id: ID!): ShopType!
   menus(shop_id: ID!, excluded_ingredient_ids: [ID]!): [MenuType!]!
+  menu(id: ID!): MenuType!
 }
 
 type Mutation {
