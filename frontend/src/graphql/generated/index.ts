@@ -83,6 +83,7 @@ export type Query = {
   genres: Array<GenreType>;
   included_ingredients: Array<IngredientType>;
   ingredients: Array<IngredientType>;
+  menu: MenuType;
   menus: Array<MenuType>;
   shop: ShopType;
   shops: Array<ShopType>;
@@ -91,6 +92,11 @@ export type Query = {
 
 export type QueryIncluded_IngredientsArgs = {
   ids: Array<InputMaybe<Scalars['ID']>>;
+};
+
+
+export type QueryMenuArgs = {
+  id: Scalars['ID'];
 };
 
 
