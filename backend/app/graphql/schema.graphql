@@ -7,6 +7,7 @@ type Query {
   shop(id: ID!): Shop! @field(resolver: "ShopResolver@find")
   menus(shop_id: ID!, excluded_ingredient_ids: [ID]!): [Menu!]!
     @field(resolver: "MenusResolver@find")
+  menu(id: ID!): Menu! @field(resolver: "MenuResolver@find")
 }
 
 type Mutation {
