@@ -7,11 +7,20 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { FC, memo } from 'react';
+import { MenusSearchCondition } from '../Menus/utils';
+import { useHandler } from './hooks';
 import styles from './index.module.scss';
 
-type Props = {};
+type Props = {
+  menuId: string;
+  searchCondition: MenusSearchCondition;
+};
 
-export const Menu: FC<Props> = memo(({}) => {
+export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
+  const { handleBack, handleSearchMenus, handleSearchShop } = useHandler({
+    searchCondition,
+  });
+
   return (
     <div className={styles.container}>
       <Heading mb={8}>ちゃぶ屋とんこつらぁめん ヨドバシ横浜店</Heading>
@@ -53,7 +62,7 @@ export const Menu: FC<Props> = memo(({}) => {
           variant='outline'
           w='336px'
           maxW='100%'
-          onClick={() => {}}
+          onClick={handleBack}
         >
           検索結果にもどる
         </Button>
@@ -65,7 +74,7 @@ export const Menu: FC<Props> = memo(({}) => {
           variant='outline'
           w='336px'
           maxW='100%'
-          onClick={() => {}}
+          onClick={handleSearchMenus}
         >
           アレルギー物質を変更して検索する
         </Button>
@@ -77,7 +86,7 @@ export const Menu: FC<Props> = memo(({}) => {
           variant='outline'
           w='336px'
           maxW='100%'
-          onClick={() => {}}
+          onClick={handleSearchShop}
         >
           店舗を再検索する
         </Button>

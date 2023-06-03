@@ -1,4 +1,5 @@
 import { useMenusPageQuery } from '@/graphql/generated';
+import { pagesPath } from '@/utils/$path';
 import {
   Box,
   Button,
@@ -77,7 +78,12 @@ export const Menus: FC<Props> = memo(({ searchCondition }) => {
             templateColumns='repeat(auto-fill, minmax(200px, 1fr))'
           >
             {menus.map((menu) => (
-              <Link href='' key={menu.id}>
+              <Link
+                href={pagesPath.menus
+                  ._id(menu.id)
+                  .$url({ query: searchCondition })}
+                key={menu.id}
+              >
                 <a>
                   <Card>
                     <CardHeader>
