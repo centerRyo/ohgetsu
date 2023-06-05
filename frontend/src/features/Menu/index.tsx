@@ -42,7 +42,14 @@ export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
       </Flex>
 
       <Flex maxWidth='30rem' margin='0 auto' mb={8}>
-        <Image src='/images/no_image.png' fit='fill' />
+        <Image
+          src={
+            menu?.pic
+              ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${menu?.pic}`
+              : '/images/no_image.png'
+          }
+          fit='fill'
+        />
       </Flex>
 
       <div className={styles.explanation}>
