@@ -1,3 +1,4 @@
+import { Spinner } from '@/components/spinner';
 import { useMenuPageQuery } from '@/graphql/generated';
 import {
   Button,
@@ -5,7 +6,6 @@ import {
   Heading,
   Image,
   SimpleGrid,
-  Spinner,
   Text,
 } from '@chakra-ui/react';
 import { FC, memo } from 'react';
@@ -118,15 +118,7 @@ export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
       </Flex>
     </div>
   ) : (
-    <div className={styles.spinnerWrapper}>
-      <Spinner
-        size='xl'
-        thickness='4px'
-        speed='0.65s'
-        emptyColor='gray.200'
-        color='green'
-      />
-    </div>
+    <Spinner color='green' />
   );
 });
 Menu.displayName = 'Menu';
