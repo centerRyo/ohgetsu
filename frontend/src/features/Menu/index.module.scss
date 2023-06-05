@@ -6,6 +6,7 @@
   .subTitle {
     padding: 1rem 1.5rem;
     background: #edf2f7;
+    font-weight: bold;
   }
 
   .explanation {
@@ -25,4 +26,11 @@
       background: #fff;
     }
   }
+}
+
+.spinnerWrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

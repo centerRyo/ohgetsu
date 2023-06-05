@@ -120,6 +120,14 @@ export type ShopType = {
   pic?: Maybe<Scalars['String']>;
 };
 
+export type MenuPageQueryVariables = Exact<{
+  id: Scalars['ID'];
+  shop_id: Scalars['ID'];
+}>;
+
+
+export type MenuPageQuery = { __typename?: 'Query', menu: { __typename?: 'MenuType', id: string, name: string, pic?: string | null, ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string, pic: string }> }, shop: { __typename?: 'ShopType', id: string, name: string } };
+
 export type MenusPageQueryVariables = Exact<{
   shop_id: Scalars['ID'];
   excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']>> | InputMaybe<Scalars['ID']>;
@@ -163,6 +171,53 @@ export type ShopsPageQueryVariables = Exact<{ [key: string]: never; }>;
 export type ShopsPageQuery = { __typename?: 'Query', shops: Array<{ __typename?: 'ShopType', id: string, name: string, address?: string | null, pic?: string | null, genre?: { __typename?: 'GenreType', id: string, name: string } | null }> };
 
 
+export const MenuPageDocument = gql`
+    query MenuPage($id: ID!, $shop_id: ID!) {
+  menu(id: $id) {
+    id
+    name
+    pic
+    ingredients {
+      id
+      name
+      pic
+    }
+  }
+  shop(id: $shop_id) {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useMenuPageQuery__
+ *
+ * To run a query within a React component, call `useMenuPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMenuPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMenuPageQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *      shop_id: // value for 'shop_id'
+ *   },
+ * });
+ */
+export function useMenuPageQuery(baseOptions: Apollo.QueryHookOptions<MenuPageQuery, MenuPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MenuPageQuery, MenuPageQueryVariables>(MenuPageDocument, options);
+      }
+export function useMenuPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MenuPageQuery, MenuPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MenuPageQuery, MenuPageQueryVariables>(MenuPageDocument, options);
+        }
+export type MenuPageQueryHookResult = ReturnType<typeof useMenuPageQuery>;
+export type MenuPageLazyQueryHookResult = ReturnType<typeof useMenuPageLazyQuery>;
+export type MenuPageQueryResult = Apollo.QueryResult<MenuPageQuery, MenuPageQueryVariables>;
 export const MenusPageDocument = gql`
     query MenusPage($shop_id: ID!, $excluded_ingredient_ids: [ID]!) {
   menus(shop_id: $shop_id, excluded_ingredient_ids: $excluded_ingredient_ids) {

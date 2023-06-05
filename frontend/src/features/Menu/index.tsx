@@ -1,9 +1,11 @@
+import { useMenuPageQuery } from '@/graphql/generated';
 import {
   Button,
   Flex,
   Heading,
   Image,
   SimpleGrid,
+  Spinner,
   Text,
 } from '@chakra-ui/react';
 import { FC, memo } from 'react';
@@ -17,16 +19,26 @@ type Props = {
 };
 
 export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
+  const { data, loading } = useMenuPageQuery({
+    variables: {
+      id: menuId,
+      shop_id: searchCondition.shopId,
+    },
+  });
+
+  const shop = data?.shop;
+  const menu = data?.menu;
+
   const { handleBack, handleSearchMenus, handleSearchShop } = useHandler({
     searchCondition,
   });
 
-  return (
+  return !loading ? (
     <div className={styles.container}>
-      <Heading mb={8}>ちゃぶ屋とんこつらぁめん ヨドバシ横浜店</Heading>
+      <Heading mb={8}>{shop?.name}</Heading>
 
       <Flex mb={8} className={styles.subTitle}>
-        ちゃぶとんらぁめん
+        {menu?.name}
       </Flex>
 
       <Flex maxWidth='30rem' margin='0 auto' mb={8}>
@@ -41,17 +53,23 @@ export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
           spacing={4}
           templateColumns='repeat(auto-fill, minmax(200px, 1fr))'
         >
-          <Flex
-            maxW='sm'
-            padding='25px 10px'
-            flexDir='column'
-            alignItems='center'
-            gap={4}
-            className={styles.ingredient}
-          >
-            <Image src='/images/no_image.png' fit='fill' />
-            <Text fontWeight='bold'>卵</Text>
-          </Flex>
+          {menu?.ingredients.map((ingredient) => (
+            <Flex
+              maxW='sm'
+              padding='25px 10px'
+              flexDir='column'
+              alignItems='center'
+              gap={4}
+              className={styles.ingredient}
+              key={ingredient.id}
+            >
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${ingredient.pic}`}
+                fit='fill'
+              />
+              <Text fontWeight='bold'>{ingredient.name}</Text>
+            </Flex>
+          ))}
         </SimpleGrid>
       </section>
 
@@ -91,6 +109,16 @@ export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
           店舗を再検索する
         </Button>
       </Flex>
+    </div>
+  ) : (
+    <div className={styles.spinnerWrapper}>
+      <Spinner
+        size='xl'
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='green'
+      />
     </div>
   );
 });
