@@ -1,0 +1,16 @@
+query MenuPage($id: ID!, $shop_id: ID!) {
+  menu(id: $id) {
+    id
+    name
+    pic
+    ingredients {
+      id
+      name
+      pic
+    }
+  }
+  shop(id: $shop_id) {
+    id
+    name
+  }
+}
