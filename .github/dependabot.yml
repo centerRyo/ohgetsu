@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/frontend'
+    # schedule:
+    #   interval: 'weekly'
+    reviewers:
+      - 'centerRyo'
+    labels:
+      - 'dependencies'
+      - 'Frontend'
+
+  - package-ecosystem: 'composer'
+    directory: '/backend'
+    # schedule:
+    #   interval: 'weekly'
+    reviewers:
+      - 'centerRyo'
+    labels:
+      - 'dependencies'
+      - 'Backend'
