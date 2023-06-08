@@ -21,11 +21,12 @@ export const useHandler = ({ preview, setPreview, reset }: TUseHandlerArgs) => {
           variables: {
             input: {
               ...values,
+              pic: values.pic ? values?.pic[0] : undefined,
               menus: {
                 create: values.menus.map((menu) => {
                   return {
                     name: menu.name,
-                    pic: menu.pic,
+                    pic: menu.pic ? menu.pic[0] : undefined,
                     ingredients: {
                       connect: menu.ingredients,
                     },
@@ -40,6 +41,7 @@ export const useHandler = ({ preview, setPreview, reset }: TUseHandlerArgs) => {
         if (errors) throw errors;
 
         reset();
+        setPreview({ pic: undefined, 'menus.0.pic': undefined });
 
         toast({
           title: 'お店情報を登録しました',

@@ -1,3 +1,6 @@
+scalar Upload
+  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
+
 type Query {
   ingredients: [Ingredient!]! @all
   included_ingredients(ids: [ID]!): [Ingredient!]!
@@ -17,7 +20,7 @@ type Mutation {
 input CreateShopInput {
   name: String!
   address: String
-  pic: String
+  pic: Upload
   genre_id: String!
   menus: CreateMenusInput
 }
@@ -28,7 +31,7 @@ input CreateMenusInput {
 
 input CreateMenuInput {
   name: String!
-  pic: String
+  pic: Upload
   ingredients: CreateIngredientsInput
 }
 
