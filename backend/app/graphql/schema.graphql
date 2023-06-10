@@ -14,7 +14,8 @@ type Query {
 }
 
 type Mutation {
-  createShop(input: CreateShopInput! @spread): Shop! @create
+  createShop(input: CreateShopInput! @spread): Shop!
+    @field(resolver: "RegisterShopResolver@create")
 }
 
 input CreateShopInput {
