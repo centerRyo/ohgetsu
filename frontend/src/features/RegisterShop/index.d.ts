@@ -1,12 +1,12 @@
 export type FormValues = {
   name: string;
   address: string;
-  pic?: string;
+  pic?: FileList;
   genre_id: string;
   menus: Array<{
     name: string;
     ingredients: Array<string>;
-    pic?: string;
+    pic?: FileList;
   }>;
 };
 

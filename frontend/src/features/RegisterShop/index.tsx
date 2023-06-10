@@ -10,10 +10,10 @@ import {
 import { memo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import Genres from './Genres';
-import Ingredients from './Ingredients';
 import { useHandler } from './hooks';
 import { FormValues, PreviewType } from './index.d';
 import styles from './index.module.scss';
+import Ingredients from './Ingredients';
 
 const RegisterShop = memo(() => {
   const {
@@ -27,9 +27,9 @@ const RegisterShop = memo(() => {
     defaultValues: {
       name: '',
       address: '',
-      pic: '',
+      pic: undefined,
       genre_id: '',
-      menus: [{ name: '', ingredients: [], pic: '' }],
+      menus: [{ name: '', ingredients: [], pic: undefined }],
     },
   });
 
@@ -46,7 +46,8 @@ const RegisterShop = memo(() => {
     reset,
   });
 
-  const handleAddMenu = () => append([{ name: '', ingredients: [], pic: '' }]);
+  const handleAddMenu = () =>
+    append([{ name: '', ingredients: [], pic: undefined }]);
 
   return (
     <div className={styles.container}>

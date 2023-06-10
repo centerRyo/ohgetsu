@@ -1,3 +1,5 @@
+scalar Upload
+
 type Query {
   ingredients: [IngredientType!]!
   included_ingredients(ids: [ID]!): [IngredientType!]!
@@ -15,7 +17,7 @@ type Mutation {
 input CreateShopInput {
   name: String!
   address: String
-  pic: String
+  pic: Upload
   genre_id: String!
   menus: CreateMenusInput
 }
@@ -26,7 +28,7 @@ input CreateMenusInput {
 
 input CreateMenuInput {
   name: String!
-  pic: String
+  pic: Upload
   ingredients: CreateIngredientsInput
 }
 

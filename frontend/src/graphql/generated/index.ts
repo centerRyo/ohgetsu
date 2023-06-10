@@ -13,6 +13,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Upload: any;
 };
 
 export enum Category {
@@ -31,7 +32,7 @@ export type CreateIngredientsInput = {
 export type CreateMenuInput = {
   ingredients?: InputMaybe<CreateIngredientsInput>;
   name: Scalars['String'];
-  pic?: InputMaybe<Scalars['String']>;
+  pic?: InputMaybe<Scalars['Upload']>;
 };
 
 export type CreateMenusInput = {
@@ -43,7 +44,7 @@ export type CreateShopInput = {
   genre_id: Scalars['String'];
   menus?: InputMaybe<CreateMenusInput>;
   name: Scalars['String'];
-  pic?: InputMaybe<Scalars['String']>;
+  pic?: InputMaybe<Scalars['Upload']>;
 };
 
 export type GenreType = {
