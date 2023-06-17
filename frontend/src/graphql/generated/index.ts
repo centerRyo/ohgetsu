@@ -122,16 +122,16 @@ export type ShopType = {
 };
 
 export type MenuPageQueryVariables = Exact<{
-  id: Scalars['ID'];
-  shop_id: Scalars['ID'];
+  id: Scalars['ID']['input'];
+  shop_id: Scalars['ID']['input'];
 }>;
 
 
 export type MenuPageQuery = { __typename?: 'Query', menu: { __typename?: 'MenuType', id: string, name: string, pic?: string | null, ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string, pic: string }> }, shop: { __typename?: 'ShopType', id: string, name: string } };
 
 export type MenusPageQueryVariables = Exact<{
-  shop_id: Scalars['ID'];
-  excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']>> | InputMaybe<Scalars['ID']>;
+  shop_id: Scalars['ID']['input'];
+  excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
@@ -160,7 +160,7 @@ export type ShopPageIngredientsQueryVariables = Exact<{ [key: string]: never; }>
 export type ShopPageIngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientType', id: string, name: string, pic: string }> };
 
 export type ShopPageQueryVariables = Exact<{
-  shop_id: Scalars['ID'];
+  shop_id: Scalars['ID']['input'];
 }>;
 
 
