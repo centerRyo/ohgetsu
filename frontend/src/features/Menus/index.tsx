@@ -84,30 +84,28 @@ export const Menus = memo(({ searchCondition }: Props) => {
                   .$url({ query: searchCondition })}
                 key={menu.id}
               >
-                <a>
-                  <Card>
-                    <CardHeader>
-                      <Box className={styles.imageWrap}>
-                        <Image
-                          src={
-                            menu?.pic
-                              ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${menu?.pic}`
-                              : '/images/no_image.png'
-                          }
-                          fit='fill'
-                          objectFit='cover'
-                          borderRadius='md'
-                          alt={menu.name}
-                        />
-                      </Box>
-                    </CardHeader>
-                    <CardBody>
-                      <Heading size='md' noOfLines={3} height='72px'>
-                        {menu.name}
-                      </Heading>
-                    </CardBody>
-                  </Card>
-                </a>
+                <Card>
+                  <CardHeader>
+                    <Box className={styles.imageWrap}>
+                      <Image
+                        src={
+                          menu?.pic
+                            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${menu?.pic}`
+                            : '/images/no_image.png'
+                        }
+                        fit='fill'
+                        objectFit='cover'
+                        borderRadius='md'
+                        alt={menu.name}
+                      />
+                    </Box>
+                  </CardHeader>
+                  <CardBody>
+                    <Heading size='md' noOfLines={3} height='72px'>
+                      {menu.name}
+                    </Heading>
+                  </CardBody>
+                </Card>
               </Link>
             ))}
           </SimpleGrid>
