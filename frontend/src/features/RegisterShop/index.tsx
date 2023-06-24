@@ -105,7 +105,16 @@ const RegisterShop = memo(() => {
               accept='image/*'
               onChange={handleFileChange}
             />
-            {preview.pic && <Image src={preview.pic} alt={preview.pic} />}
+            {preview.pic && (
+              <Image
+                src={preview.pic}
+                alt={preview.pic}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
+            )}
           </FormControl>
         </Flex>
         <Flex mb={6}>
@@ -155,6 +164,10 @@ const RegisterShop = memo(() => {
                     // @ts-ignore
                     src={preview[`menus.${index}.pic`]}
                     alt='プレビュー画像'
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
                   />
                 )}
               </FormControl>
