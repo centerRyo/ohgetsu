@@ -8,7 +8,6 @@ import {
   Select,
   Skeleton,
 } from '@chakra-ui/react';
-import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { FormValues } from '../index.d';
 import styles from '../index.module.scss';
@@ -18,7 +17,7 @@ type Props = {
   register: UseFormRegister<FormValues>;
 };
 
-const Genres: FC<Props> = ({ errors, register }) => {
+const Genres = ({ errors, register }: Props) => {
   const { data, error, loading } = useRegisterShopGenresQuery();
 
   const genres = data?.genres || [];

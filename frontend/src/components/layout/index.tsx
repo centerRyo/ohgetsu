@@ -1,6 +1,6 @@
 import { SERVICE_NAME } from '@/constants';
 import Head from 'next/head';
-import { FC, memo, ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import Header from '../header';
 import styles from './index.module.scss';
 
@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout: FC<Props> = memo(({ children }) => {
+const Layout = memo(({ children }: Props) => {
   return (
     <div>
       <Head>

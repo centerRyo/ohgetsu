@@ -6,7 +6,7 @@ import {
   FormLabel,
   SkeletonText,
 } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 
 type Props = Partial<{
   isRequired: boolean;
@@ -20,7 +20,7 @@ type Props = Partial<{
   label: string;
 };
 
-const Checkbox: FC<Props> = memo(
+const Checkbox = memo(
   ({
     name,
     label,
@@ -30,7 +30,7 @@ const Checkbox: FC<Props> = memo(
     isLoading,
     isDisabled,
     options,
-  }) => {
+  }: Props) => {
     return (
       <FormControl isRequired={isRequired}>
         <FormLabel fontWeight={fontWeight}>{label}</FormLabel>

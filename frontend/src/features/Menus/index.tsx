@@ -14,7 +14,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { useHandler } from './hooks';
 import styles from './index.module.scss';
 import { MenusSearchCondition } from './utils';
@@ -23,7 +23,7 @@ type Props = {
   searchCondition: MenusSearchCondition;
 };
 
-export const Menus: FC<Props> = memo(({ searchCondition }) => {
+export const Menus = memo(({ searchCondition }: Props) => {
   const excludedIngredientIds = searchCondition.excludedIngredientIds
     ? searchCondition.excludedIngredientIds?.split(',')
     : [];
