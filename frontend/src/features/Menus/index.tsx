@@ -97,6 +97,7 @@ export const Menus = memo(({ searchCondition }: Props) => {
                           fit='fill'
                           objectFit='cover'
                           borderRadius='md'
+                          alt={menu.name}
                         />
                       </Box>
                     </CardHeader>

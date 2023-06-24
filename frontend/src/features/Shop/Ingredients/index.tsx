@@ -67,8 +67,8 @@ const Ingredients = memo(({ register }: Props) => {
                         option?.pic ?? ''
                       }`}
                       alt={option.label}
-                      width='100%'
-                      height='100%'
+                      width='100'
+                      height='100'
                     />
                     <Text fontWeight='bold'>{option.label}</Text>
                   </Flex>

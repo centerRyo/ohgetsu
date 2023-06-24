@@ -49,6 +49,7 @@ export const Menu = memo(({ menuId, searchCondition }: Props) => {
               : '/images/no_image.png'
           }
           fit='fill'
+          alt={menu?.name}
         />
       </Flex>
 
@@ -73,6 +74,7 @@ export const Menu = memo(({ menuId, searchCondition }: Props) => {
               <Image
                 src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${ingredient.pic}`}
                 fit='fill'
+                alt={ingredient.name}
               />
               <Text fontWeight='bold'>{ingredient.name}</Text>
             </Flex>

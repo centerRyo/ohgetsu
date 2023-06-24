@@ -7,6 +7,7 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 import { memo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import Genres from './Genres';
@@ -104,7 +105,7 @@ const RegisterShop = memo(() => {
               accept='image/*'
               onChange={handleFileChange}
             />
-            {preview.pic && <img src={preview.pic} />}
+            {preview.pic && <Image src={preview.pic} alt={preview.pic} />}
           </FormControl>
         </Flex>
         <Flex mb={6}>
@@ -150,8 +151,11 @@ const RegisterShop = memo(() => {
                 />
                 {/* @ts-ignore */}
                 {preview[`menus.${index}.pic`] && (
-                  // @ts-ignore
-                  <img src={preview[`menus.${index}.pic`]} />
+                  <Image
+                    // @ts-ignore
+                    src={preview[`menus.${index}.pic`]}
+                    alt='プレビュー画像'
+                  />
                 )}
               </FormControl>
             </Flex>
