@@ -113,6 +113,8 @@ const RegisterShop = memo(() => {
                   maxWidth: '100%',
                   height: 'auto',
                 }}
+                width='200'
+                height='200'
               />
             )}
           </FormControl>
@@ -168,6 +170,8 @@ const RegisterShop = memo(() => {
                       maxWidth: '100%',
                       height: 'auto',
                     }}
+                    width='200'
+                    height='200'
                   />
                 )}
               </FormControl>
