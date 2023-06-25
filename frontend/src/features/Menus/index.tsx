@@ -14,7 +14,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { useHandler } from './hooks';
 import styles from './index.module.scss';
 import { MenusSearchCondition } from './utils';
@@ -23,7 +23,7 @@ type Props = {
   searchCondition: MenusSearchCondition;
 };
 
-export const Menus: FC<Props> = memo(({ searchCondition }) => {
+export const Menus = memo(({ searchCondition }: Props) => {
   const excludedIngredientIds = searchCondition.excludedIngredientIds
     ? searchCondition.excludedIngredientIds?.split(',')
     : [];
@@ -84,29 +84,28 @@ export const Menus: FC<Props> = memo(({ searchCondition }) => {
                   .$url({ query: searchCondition })}
                 key={menu.id}
               >
-                <a>
-                  <Card>
-                    <CardHeader>
-                      <Box className={styles.imageWrap}>
-                        <Image
-                          src={
-                            menu?.pic
-                              ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${menu?.pic}`
-                              : '/images/no_image.png'
-                          }
-                          fit='fill'
-                          objectFit='cover'
-                          borderRadius='md'
-                        />
-                      </Box>
-                    </CardHeader>
-                    <CardBody>
-                      <Heading size='md' noOfLines={3} height='72px'>
-                        {menu.name}
-                      </Heading>
-                    </CardBody>
-                  </Card>
-                </a>
+                <Card>
+                  <CardHeader>
+                    <Box className={styles.imageWrap}>
+                      <Image
+                        src={
+                          menu?.pic
+                            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${menu?.pic}`
+                            : '/images/no_image.png'
+                        }
+                        fit='fill'
+                        objectFit='cover'
+                        borderRadius='md'
+                        alt={menu.name}
+                      />
+                    </Box>
+                  </CardHeader>
+                  <CardBody>
+                    <Heading size='md' noOfLines={3} height='72px'>
+                      {menu.name}
+                    </Heading>
+                  </CardBody>
+                </Card>
               </Link>
             ))}
           </SimpleGrid>

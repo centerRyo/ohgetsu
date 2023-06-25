@@ -7,9 +7,7 @@ const Header: FC = memo(() => {
     <header className={styles.container}>
       <h1 className={styles.logo}>
         <Link href='/'>
-          <a>
-            <Logo />
-          </a>
+          <Logo />
         </Link>
       </h1>
     </header>

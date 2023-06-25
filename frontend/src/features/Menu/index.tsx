@@ -8,7 +8,7 @@ import {
   SimpleGrid,
   Text,
 } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { MenusSearchCondition } from '../Menus/utils';
 import { useHandler } from './hooks';
 import styles from './index.module.scss';
@@ -18,7 +18,7 @@ type Props = {
   searchCondition: MenusSearchCondition;
 };
 
-export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
+export const Menu = memo(({ menuId, searchCondition }: Props) => {
   const { data, loading } = useMenuPageQuery({
     variables: {
       id: menuId,
@@ -49,6 +49,7 @@ export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
               : '/images/no_image.png'
           }
           fit='fill'
+          alt={menu?.name}
         />
       </Flex>
 
@@ -73,6 +74,7 @@ export const Menu: FC<Props> = memo(({ menuId, searchCondition }) => {
               <Image
                 src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${ingredient.pic}`}
                 fit='fill'
+                alt={ingredient.name}
               />
               <Text fontWeight='bold'>{ingredient.name}</Text>
             </Flex>

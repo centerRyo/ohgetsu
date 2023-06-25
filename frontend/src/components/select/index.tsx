@@ -3,7 +3,7 @@ import {
   FormLabel,
   Select as ChakraSelect,
 } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 
 type Props = Partial<{
   isRequired: boolean;
@@ -15,8 +15,15 @@ type Props = Partial<{
   options: Array<{ id: number; value: string }>;
 };
 
-const Select: FC<Props> = memo(
-  ({ name, label, options, isRequired, placeholder, fontWeight = 'bold' }) => {
+const Select = memo(
+  ({
+    name,
+    label,
+    options,
+    isRequired,
+    placeholder,
+    fontWeight = 'bold',
+  }: Props) => {
     return (
       <FormControl isRequired={isRequired}>
         <FormLabel fontWeight={fontWeight}>{label}</FormLabel>

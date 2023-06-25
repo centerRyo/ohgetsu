@@ -1,5 +1,5 @@
 import { Spinner as ChakraSpinner } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import styles from './index.module.scss';
 
 type Props = Partial<{
@@ -9,8 +9,8 @@ type Props = Partial<{
   color: string;
 }>;
 
-export const Spinner: FC<Props> = memo(
-  ({ size = 'xl', thickness = '4px', speed = '0.65s', color }) => (
+export const Spinner = memo(
+  ({ size = 'xl', thickness = '4px', speed = '0.65s', color }: Props) => (
     <div className={styles.container}>
       <ChakraSpinner
         size={size}
@@ -22,3 +22,4 @@ export const Spinner: FC<Props> = memo(
     </div>
   )
 );
+Spinner.displayName = 'Spinner';

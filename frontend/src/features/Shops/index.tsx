@@ -33,52 +33,50 @@ const Shops = memo(() => {
         {!loading
           ? shops.map((shop) => (
               <Link href={pagesPath.shops._id(shop.id).$url()} key={shop.id}>
-                <a>
-                  <Card>
-                    <CardHeader>
-                      <Box className={styles.imageWrap}>
-                        <Image
-                          src={
-                            shop.pic
-                              ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${shop.pic}`
-                              : '/images/no_image.png'
-                          }
-                          alt={shop.name}
-                          fit='fill'
-                          objectFit='cover'
-                          borderRadius='md'
-                        />
-                      </Box>
-                    </CardHeader>
-                    <CardBody>
-                      <Tooltip
-                        label={shop.name}
-                        hasArrow
-                        bg='green'
-                        fontWeight='bold'
-                      >
-                        <Heading size='md' noOfLines={2} height='48px'>
-                          {shop.name}
-                        </Heading>
-                      </Tooltip>
-                      <Tag
-                        variant='outline'
-                        mt={4}
-                        color='black'
-                        borderColor='#d8d9db'
-                        fontWeight='600'
-                      >
-                        {shop.genre?.name}
-                      </Tag>
-                      <Flex mt={4} alignItems='baseline'>
-                        <HiOutlineLocationMarker className={styles.location} />
-                        <Text ml={2} noOfLines={2} height='48px'>
-                          {shop.address}
-                        </Text>
-                      </Flex>
-                    </CardBody>
-                  </Card>
-                </a>
+                <Card>
+                  <CardHeader>
+                    <Box className={styles.imageWrap}>
+                      <Image
+                        src={
+                          shop.pic
+                            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${shop.pic}`
+                            : '/images/no_image.png'
+                        }
+                        alt={shop.name}
+                        fit='fill'
+                        objectFit='cover'
+                        borderRadius='md'
+                      />
+                    </Box>
+                  </CardHeader>
+                  <CardBody>
+                    <Tooltip
+                      label={shop.name}
+                      hasArrow
+                      bg='green'
+                      fontWeight='bold'
+                    >
+                      <Heading size='md' noOfLines={2} height='48px'>
+                        {shop.name}
+                      </Heading>
+                    </Tooltip>
+                    <Tag
+                      variant='outline'
+                      mt={4}
+                      color='black'
+                      borderColor='#d8d9db'
+                      fontWeight='600'
+                    >
+                      {shop.genre?.name}
+                    </Tag>
+                    <Flex mt={4} alignItems='baseline'>
+                      <HiOutlineLocationMarker className={styles.location} />
+                      <Text ml={2} noOfLines={2} height='48px'>
+                        {shop.address}
+                      </Text>
+                    </Flex>
+                  </CardBody>
+                </Card>
               </Link>
             ))
           : [1, 2, 3, 4, 5, 6, 7, 8].map((_) => (

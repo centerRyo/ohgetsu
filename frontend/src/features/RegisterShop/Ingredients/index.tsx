@@ -9,7 +9,6 @@ import {
   FormLabel,
   SkeletonText,
 } from '@chakra-ui/react';
-import { FC } from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { FormValues } from '../index.d';
 import styles from '../index.module.scss';
@@ -20,7 +19,7 @@ type Props = {
   index: number;
 };
 
-const Ingredients: FC<Props> = ({ errors, control, index }) => {
+const Ingredients = ({ errors, control, index }: Props) => {
   const { data, loading } = useRegisterShopIngredientsQuery();
 
   const ingredients = data?.ingredients || [];

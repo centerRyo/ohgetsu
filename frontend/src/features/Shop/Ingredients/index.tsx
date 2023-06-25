@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Image from 'next/image';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { FormValues } from '../index.d';
 import styles from './index.module.scss';
@@ -18,7 +18,7 @@ type Props = {
   register: UseFormRegister<FormValues>;
 };
 
-const Ingredients: FC<Props> = memo(({ register }) => {
+const Ingredients = memo(({ register }: Props) => {
   const { data, loading } = useShopPageIngredientsQuery();
   const ingredients = data?.ingredients || [];
 
@@ -67,8 +67,12 @@ const Ingredients: FC<Props> = memo(({ register }) => {
                         option?.pic ?? ''
                       }`}
                       alt={option.label}
-                      width='100%'
-                      height='100%'
+                      width='100'
+                      height='100'
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                      }}
                     />
                     <Text fontWeight='bold'>{option.label}</Text>
                   </Flex>

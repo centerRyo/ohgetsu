@@ -1,6 +1,6 @@
 import { useShopPageQuery } from '@/graphql/generated';
 import { Button, Flex, Heading, Skeleton } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHandler } from './hooks';
 import { FormValues } from './index.d';
@@ -11,7 +11,7 @@ type Props = {
   shopId: string;
 };
 
-const Shop: FC<Props> = memo(({ shopId }) => {
+const Shop = memo(({ shopId }: Props) => {
   const { data, loading } = useShopPageQuery({
     variables: { shop_id: shopId },
   });
