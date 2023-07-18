@@ -15,6 +15,7 @@ import styles from '../index.module.scss';
 
 type Props = {
   errors: FieldErrors<FormValues>;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   control: Control<FormValues, any>;
   index: number;
 };
@@ -42,10 +43,11 @@ const Ingredients = ({ errors, control, index }: Props) => {
           name={`menus.${index}.ingredients`}
           control={control}
           render={({ field: { ref, ...rest } }) => (
+            // @ts-ignore
             <CheckboxGroup {...rest}>
               <Flex gap={4} wrap='wrap'>
                 {options.map((option) => (
-                  <Checkbox value={option.value} key={option.key}>
+                  <Checkbox value={option.value} key={option.key} ref={ref}>
                     {option.label}
                   </Checkbox>
                 ))}

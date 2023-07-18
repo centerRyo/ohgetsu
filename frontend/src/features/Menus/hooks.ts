@@ -11,7 +11,7 @@ export const useHandler = ({ shopId }: TUseHandlerArgs) => {
 
   const handleBack = useCallback(() => {
     router.push(pagesPath.shops._id(shopId).$url());
-  }, [router]);
+  }, [router, shopId]);
 
   return { handleBack };
 };

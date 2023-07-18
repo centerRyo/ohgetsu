@@ -58,7 +58,7 @@ export const useHandler = ({ preview, setPreview, reset }: TUseHandlerArgs) => {
         });
       }
     },
-    [register, toast]
+    [register, toast, reset, setPreview]
   );
 
   const handleFileChange = useCallback(

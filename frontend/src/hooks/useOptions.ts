@@ -59,6 +59,7 @@ export const useCustomOptions: TUseCustomOptions = ({
     );
 
     return options;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   return result;
@@ -101,6 +102,7 @@ export const useCustomOptionsWithPic: TUseCustomOptions = ({
     );
 
     return options;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   return result;
