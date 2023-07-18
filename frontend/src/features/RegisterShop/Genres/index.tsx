@@ -18,7 +18,7 @@ type Props = {
 };
 
 const Genres = ({ errors, register }: Props) => {
-  const { data, error, loading } = useRegisterShopGenresQuery();
+  const { data, loading } = useRegisterShopGenresQuery();
 
   const genres = data?.genres || [];
 

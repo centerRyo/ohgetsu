@@ -25,7 +25,7 @@ export const useHandler = ({ getValues, shopId }: TUseHandlerArgs) => {
         query: { shopId, excludedIngredientIds },
       })
     );
-  }, [getValues]);
+  }, [getValues, router, shopId]);
 
   return { handleClickSearch, handleBack };
 };

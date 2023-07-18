@@ -20,7 +20,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     return (
       <FormControl isRequired={isRequired}>
         <FormLabel fontWeight={fontWeight}>{label}</FormLabel>
-        <ChakraInput id={name} name={name} type={type} />
+        <ChakraInput id={name} name={name} type={type} ref={ref} />
         {helper && <FormHelperText>{helper}</FormHelperText>}
       </FormControl>
     );

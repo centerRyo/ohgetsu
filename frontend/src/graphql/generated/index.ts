@@ -5,15 +5,17 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  Upload: any;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  Upload: { input: any; output: any; }
 };
 
 export enum Category {
@@ -22,17 +24,17 @@ export enum Category {
 }
 
 export type CreateIngredientInput = {
-  id: Scalars['String'];
+  id: Scalars['String']['input'];
 };
 
 export type CreateIngredientsInput = {
-  connect?: InputMaybe<Array<Scalars['ID']>>;
+  connect?: InputMaybe<Array<Scalars['ID']['input']>>;
 };
 
 export type CreateMenuInput = {
   ingredients?: InputMaybe<CreateIngredientsInput>;
-  name: Scalars['String'];
-  pic?: InputMaybe<Scalars['Upload']>;
+  name: Scalars['String']['input'];
+  pic?: InputMaybe<Scalars['Upload']['input']>;
 };
 
 export type CreateMenusInput = {
@@ -40,33 +42,33 @@ export type CreateMenusInput = {
 };
 
 export type CreateShopInput = {
-  address?: InputMaybe<Scalars['String']>;
-  genre_id: Scalars['String'];
+  address?: InputMaybe<Scalars['String']['input']>;
+  genre_id: Scalars['String']['input'];
   menus?: InputMaybe<CreateMenusInput>;
-  name: Scalars['String'];
-  pic?: InputMaybe<Scalars['Upload']>;
+  name: Scalars['String']['input'];
+  pic?: InputMaybe<Scalars['Upload']['input']>;
 };
 
 export type GenreType = {
   __typename?: 'GenreType';
-  id: Scalars['ID'];
-  name: Scalars['String'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type IngredientType = {
   __typename?: 'IngredientType';
   category?: Maybe<Category>;
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  pic: Scalars['String'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  pic: Scalars['String']['output'];
 };
 
 export type MenuType = {
   __typename?: 'MenuType';
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   ingredients: Array<IngredientType>;
-  name: Scalars['String'];
-  pic?: Maybe<Scalars['String']>;
+  name: Scalars['String']['output'];
+  pic?: Maybe<Scalars['String']['output']>;
 };
 
 export type Mutation = {
@@ -92,33 +94,33 @@ export type Query = {
 
 
 export type QueryIncluded_IngredientsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']>>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
 
 export type QueryMenuArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 
 export type QueryMenusArgs = {
-  excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']>>;
-  shop_id: Scalars['ID'];
+  excluded_ingredient_ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  shop_id: Scalars['ID']['input'];
 };
 
 
 export type QueryShopArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 export type ShopType = {
   __typename?: 'ShopType';
-  address?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']['output']>;
   genre?: Maybe<GenreType>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   menus: Array<MenuType>;
-  name: Scalars['String'];
-  pic?: Maybe<Scalars['String']>;
+  name: Scalars['String']['output'];
+  pic?: Maybe<Scalars['String']['output']>;
 };
 
 export type MenuPageQueryVariables = Exact<{

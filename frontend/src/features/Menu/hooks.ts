@@ -12,12 +12,12 @@ export const useHandler = ({ searchCondition }: TUseHandlerArgs) => {
 
   const handleBack = useCallback(
     () => router.push(pagesPath.menus.$url({ query: { ...searchCondition } })),
-    [router]
+    [router, searchCondition]
   );
 
   const handleSearchMenus = useCallback(
     () => router.push(pagesPath.shops._id(searchCondition.shopId).$url()),
-    [router]
+    [router, searchCondition.shopId]
   );
 
   const handleSearchShop = useCallback(() => router.push('/'), [router]);
