@@ -54,12 +54,6 @@ const Ingredients = ({ errors, control, index }: Props) => {
               </Flex>
             </CheckboxGroup>
           )}
-          rules={{
-            validate: {
-              atLeastOneRequired: (value) =>
-                (value && value.length >= 1) || '1つ以上選択してください',
-            },
-          }}
         />
       </SkeletonText>
       <FormErrorMessage>
