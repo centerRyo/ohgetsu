@@ -20,10 +20,10 @@ jobs:
           access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
       - name: install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
       - name: Lint
-        run: npm run lint
+        run: yarn lint
       - name: Prettier
-        run: npm run format:check
+        run: yarn format:check
       - name: Type Check
-        run: npm run types-check
+        run: yarn types-check
