@@ -19,7 +19,7 @@ jobs:
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
-      - name: install dependencies
+      - name: Install dependencies
         run: yarn install --frozen-lockfile
         shell: bash
         env:
