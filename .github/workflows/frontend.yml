@@ -20,7 +20,12 @@ jobs:
           access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
       - name: install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
+        shell: bash
+        env:
+        # CI上では husky を動かさないようにする
+        # https://typicode.github.io/husky/guide.html#with-env-variables
+        HUSKY: '0'
       - name: Lint
         run: yarn lint
       - name: Prettier
