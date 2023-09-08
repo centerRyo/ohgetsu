@@ -19,6 +19,13 @@ jobs:
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
+      - name: Cache node_modules
+        id: node_modules_cache_id
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: node-v${{ matrix.node-version }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         env:
