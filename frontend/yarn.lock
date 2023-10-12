@@ -2646,10 +2646,10 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
-"@types/apollo-upload-client@^17.0.2":
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/@types/apollo-upload-client/-/apollo-upload-client-17.0.2.tgz#15dc737663928be27c768117603dfc23c21514bb"
-  integrity sha512-NphAiBqzZv3iY8Cq+qWyi0QUFFzJ+nVd7QKI/iKV8RfILrpYDL69F/vlhjn4BNxKlmc3LxJHymcf3gFzLBwuZQ==
+"@types/apollo-upload-client@^17.0.3":
+  version "17.0.3"
+  resolved "https://registry.yarnpkg.com/@types/apollo-upload-client/-/apollo-upload-client-17.0.3.tgz#96c6b8b2dd4c3998ac4ce3d4a51f6c99c1e0a163"
+  integrity sha512-uomG6TvssrJXx1XeLdo/YvViLRTuEOrHeC0+uDG8qK1GFeeRMiwGqp9T4e7vR2Bwrk5qydvQjnyv9SJX6zPLJQ==
   dependencies:
     "@apollo/client" "^3.7.0"
     "@types/extract-files" "*"
