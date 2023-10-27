@@ -5,7 +5,7 @@
 - php v8.2.1
 - laravel v8.83.27
 - react v18.2.0
-- next.js v12.3.0
+- next.js v13.5.4
 
 # 環境構築手順
 
