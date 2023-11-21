@@ -21,7 +21,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "apollo-upload-client": "^17.0.0",
+    "apollo-upload-client": "^18.0.1",
     "framer-motion": "^10.16.4",
     "graphql": "^16.8.1",
     "next": "^13.5.4",
