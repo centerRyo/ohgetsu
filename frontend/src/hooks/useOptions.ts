@@ -20,7 +20,7 @@ type TUseCustomOptions = <
   TItem extends {
     id: string;
     pic?: string;
-  }
+  },
 >(
   args: TUseCustomOptionArgs<TItem>
 ) => TOptionsIncremental;
