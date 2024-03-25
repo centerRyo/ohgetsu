@@ -6,6 +6,7 @@
 - laravel v8.83.27
 - react v18.2.0
 - next.js v13.5.4
+- node v20.2.0
 
 # 環境構築手順
 
@@ -35,16 +36,20 @@ localhost:4000 にアクセスすると画面が見れる
 
 ## frontend
 
-### frontend コンテナに入る
+### node のバージョン
 
-```
-$ docker-compose exec frontend sh
-```
+.node-version に記載の通り、v20.2.0 が必要になるため、それぞれの node パッケージマネージャーにて v20.2.0 をインストールしておくこと
 
 ### yarn install
 
 ```
 $ yarn install
+```
+
+### yarn dev
+
+```
+$ yarn dev
 ```
 
 ### アクセス

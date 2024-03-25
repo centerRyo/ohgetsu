@@ -1,19 +1,6 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./docker/frontend
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-      - ./frontend:/app:cached
-    stdin_open: true
-    tty: true
-    depends_on:
-      - nginx
-
   nginx:
     container_name: nginx
     build:
