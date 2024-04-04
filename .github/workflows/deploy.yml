@@ -20,6 +20,7 @@ jobs:
 
       # tagを取得
       - name: Set tag to environment variables
+        id: set-tag
         run: echo ::set-output name=version::${GITHUB_REF#refs/*/}
 
       - name: Set up QEMU
