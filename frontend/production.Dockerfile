@@ -13,4 +13,4 @@ RUN yarn install --frozen-lockfile && yarn build
 
 EXPOSE 3001
 
-RUN yarn start
+CMD yarn start
