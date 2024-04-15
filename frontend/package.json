@@ -22,7 +22,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "apollo-upload-client": "^17.0.0",
-    "framer-motion": "^11.0.24",
+    "framer-motion": "^11.0.28",
     "graphql": "^16.8.1",
     "next": "^14.1.4",
     "react": "^18.2.0",
