@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/frontend'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     reviewers:
       - 'centerRyo'
     labels:
@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: 'composer'
     directory: '/backend'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     reviewers:
       - 'centerRyo'
     labels:
